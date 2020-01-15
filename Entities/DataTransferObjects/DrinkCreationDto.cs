@@ -1,16 +1,12 @@
-﻿using System;
+﻿using Entities.Models;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text;
 
-namespace Entities.Models {
-
-    [Table("Drink")]
-    public class Drink {
-
-        [Column("DrinkId")]
-        public Guid Id {
-            get; set;
-        }
+namespace Entities.DataTransferObjects {
+    public class DrinkCreationDto {
 
         [Required(ErrorMessage = "Drink Name is required!")]
         [StringLength(60, ErrorMessage = "Drink Name can't be longer than 45 characters!")]
