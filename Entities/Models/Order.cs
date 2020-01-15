@@ -6,7 +6,9 @@ namespace Entities.Models {
 
     [Table("Order")]
     public class Order {
-        public Guid OrderId {
+
+        [Column("OrderId")]
+        public Guid Id {
             get; set;
         }
 

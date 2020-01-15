@@ -6,7 +6,9 @@ namespace Entities.Models {
 
     [Table("Drink")]
     public class Drink {
-        public Guid DrinkId {
+
+        [Column("DrinkId")]
+        public Guid Id {
             get; set;
         }
 
