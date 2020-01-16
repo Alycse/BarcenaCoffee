@@ -1,0 +1,46 @@
+<div class="container-fluid header-menu">
+    <a [routerLink]="['/home']">
+        <img id="logo" src="assets/menu/Logo.png">
+    </a>
+    <nav class="navbar navbar-default navbar-menu">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li routerLinkActive="link-active" [routerLinkActiveOptions]="{exact: true}">
+                    <a [routerLink]="['/home']">
+                        <span class="menu-option">
+                            Home
+                        </span>
+                    </a>
+                </li>
+                <li routerLinkActive="link-active" [routerLinkActiveOptions]="{exact: true}">
+                    <a [routerLink]="['/order']">
+                        <span class="menu-option">
+                            Order a Drink!
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="menu-option">
+                            Order History
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="menu-option">
+                            Pantries
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="menu-option">
+                            Management
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>

@@ -1,0 +1,52 @@
+#logo{
+    width: 15em;
+
+    margin-top: 12px;
+    margin-left: 40px;
+
+    float:left;
+}
+
+.navbar-menu { 
+    background-color: transparent;
+
+    border-style: none;
+    
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+
+    margin-left: 120px;
+    margin-right: 120px;
+    margin-bottom: 0px;
+
+    float:left;
+}
+
+.nav.navbar-nav li a {
+    font-weight: 600;
+    font-size: 1.2em;
+    color: #fff;
+
+    padding-left: 40px;
+    padding-right: 40px;
+}
+.nav.navbar-nav li a:hover {
+    color: rgb(207, 189, 148);
+    background-color: rgb(92, 77, 52);
+}
+
+.nav .link-active{
+    background-color: rgb(112, 99, 72);
+}
+
+.navbar .navbar-nav > li > a {
+    line-height: 45px;
+}
+
+.header-menu{
+    background-color: rgb(70, 60, 40);
+    
+    background-image: linear-gradient(rgb(70, 60, 40), rgb(80, 70, 50));
+}

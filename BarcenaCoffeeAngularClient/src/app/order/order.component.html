@@ -1,0 +1,43 @@
+
+<div id="order-container">
+    <div id="coffee-selection" class="block">
+        <div class="coffee-option">
+            <img class="coffee-option-image" src="assets/coffee/double-americano.png">
+            <div class="coffee-option-name">
+                Double Americano
+            </div>
+        </div>
+
+        <div class="coffee-option">
+            <img class="coffee-option-image" src="assets/coffee/sweet-latte.png">
+            <div class="coffee-option-name">
+                Sweet Latte
+            </div>
+        </div>
+
+        <div class="coffee-option">
+            <img class="coffee-option-image" src="assets/coffee/flat-white.png">
+            <div class="coffee-option-name">
+                Flat White
+            </div>
+        </div>
+    </div>
+
+    <div id="coffee-info" class="block">
+        <img id="coffee-info-image" src="assets/coffee/double-americano.png">
+        <div id="coffee-info-name">
+            Double Americano
+        </div>
+        <div id="coffee-info-ingredients">
+            Ingredients:
+            <div class="coffee-info-ingredient">
+                3 Units of Coffee Beans
+            </div>
+        </div>
+    </div>
+
+    <div id="order-button-container" class="block">
+        <button type="submit" class="btn btn-order" [disabled]="!ownerForm.valid">Order</button>
+    </div>
+            
+</div>

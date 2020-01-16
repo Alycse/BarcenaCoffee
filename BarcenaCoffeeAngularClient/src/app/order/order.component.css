@@ -1,0 +1,128 @@
+.coffee-option-image{
+    width: 200px;
+    height: auto;
+    
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 12px;
+}
+
+#coffee-selection{
+    background-color: rgb(56, 49, 34);
+
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+
+    padding: 10px;
+}
+
+.coffee-option:hover{
+    background-color: rgb(85, 74, 55);
+
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+
+    cursor: pointer;
+}
+
+#coffee-selection-title{
+    font-family: Impact;
+    font-size: 25px;
+
+    color: white;
+}
+
+#coffee-info{
+    background-color: rgb(43, 37, 27);
+
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+
+    margin-left: 40px;
+
+    padding-top: 100px;
+    padding-bottom: 40px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+#coffee-info{
+    font-family: sans-serif;
+
+    text-align: center;
+}
+
+#coffee-info-image {
+    width: 450px;
+    height: auto;
+}
+
+#coffee-info-name {
+    color: rgb(255, 242, 214);
+
+    margin-top: 40px;
+
+    font-size: 37px;
+}
+
+#coffee-info-ingredients{
+    color: rgb(141, 130, 114);
+    
+    font-size: 18px;
+
+    margin-top: 20px;
+}
+
+.coffee-info-ingredient{
+    color: rgb(156, 139, 105);
+
+    font-size: 19px;
+}
+
+.btn-order{
+    background-color: rgb(88, 79, 57);
+    color: rgb(238, 235, 222);
+
+    font-weight: 600;
+    font-size: 20px;
+
+    margin-top: 2px;
+    margin-left: 40px;
+
+    width: 300px;
+    height: 60px;
+}
+
+.btn-order:hover{
+    background-color: rgb(70, 64, 52);
+    color: rgb(231, 223, 187);
+}
+
+#order-container{
+    display:         flex;
+    flex-wrap:       wrap;
+    justify-content: center;
+
+    margin-top: 70px;
+}
+
+#order-button-container{
+
+}
+
+.coffee-option-name{
+    color: rgb(182, 175, 156);
+
+    font-size: 16px;
+
+    text-align: center;
+    
+    padding-bottom: 17px;
+}
