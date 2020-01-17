@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <ul class="nav navbar-nav">
                 <li routerLinkActive="link-active" [routerLinkActiveOptions]="{exact: true}">
-                    <a [routerLink]="['/home']">
+                    <a [routerLink]="['']">
                         <span class="menu-option">
                             Home
                         </span>
@@ -15,19 +15,19 @@
                 <li routerLinkActive="link-active" [routerLinkActiveOptions]="{exact: true}">
                     <a [routerLink]="['/order']">
                         <span class="menu-option">
-                            Order a Drink!
+                            Place Order
                         </span>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
+                <li routerLinkActive="link-active" [routerLinkActiveOptions]="{exact: true}">
+                    <a [routerLink]="['/history']">
                         <span class="menu-option">
                             Order History
                         </span>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
+                <li routerLinkActive="link-active" [routerLinkActiveOptions]="{exact: true}">
+                    <a [routerLink]="['/pantries']">
                         <span class="menu-option">
                             Pantries
                         </span>

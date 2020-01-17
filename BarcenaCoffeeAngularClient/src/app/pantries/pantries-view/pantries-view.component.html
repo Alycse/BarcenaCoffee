@@ -1,0 +1,25 @@
+<div id="pantries-view-container">
+    <div id="pantries-view-title">
+        Pantries List
+    </div>
+    <div *ngIf="pantries?.length > 0">
+        <table id="pantries-view-table" class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Pantry Name</th>
+                    <th scope="col">Coffee Bean Bag Stock</th>
+                    <th scope="col">Sugar Pack Stock</th>
+                    <th scope="col">Milk Carton Stock</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let pantry of pantries">
+                <tr>
+                    <td>{{pantry.pantryName}}</td>
+                    <td>{{getUnitsFromIngredientContainer(pantry.coffeeBeanUnits)}}</td>
+                    <td>{{getUnitsFromIngredientContainer(pantry.sugarUnits)}}</td>
+                    <td>{{getUnitsFromIngredientContainer(pantry.milkUnits)}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
