@@ -1,43 +1,46 @@
 ﻿using Contracts;
 using Entities;
+using Entities.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Repository {
-    public class RepositoryWrapper : IRepositoryWrapper {
+    public class RepositoryWrapper {
+
         private RepositoryContext _repoContext;
-        private IPantryRepository _pantry;
-        private IDrinkRepository _drink;
-        private IOrderRepository _order;
 
-        public IPantryRepository Pantry {
+        private PantryRepository _pantryRepository;
+        private DrinkRepository _drinkRepository;
+        private OrderRepository _orderRepository;
+
+        public PantryRepository Pantry {
             get {
-                if (_pantry == null) {
-                    _pantry = new PantryRepository(_repoContext);
+                if (_pantryRepository == null) {
+                    _pantryRepository = new PantryRepository(_repoContext);
                 }
 
-                return _pantry;
+                return _pantryRepository;
             }
         }
 
-        public IDrinkRepository Drink {
+        public DrinkRepository Drink {
             get {
-                if (_drink == null) {
-                    _drink = new DrinkRepository(_repoContext);
+                if (_drinkRepository == null) {
+                    _drinkRepository = new DrinkRepository(_repoContext);
                 }
 
-                return _drink;
+                return _drinkRepository;
             }
         }
 
-        public IOrderRepository Order {
+        public OrderRepository Order {
             get {
-                if (_order == null) {
-                    _order = new OrderRepository(_repoContext);
+                if (_orderRepository == null) {
+                    _orderRepository = new OrderRepository(_repoContext);
                 }
 
-                return _order;
+                return _orderRepository;
             }
         }
 
