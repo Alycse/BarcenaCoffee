@@ -21,3 +21,21 @@
 
     font-size: 16px;
 }
+
+.btn-restock{
+    background-color: rgb(68, 100, 39);
+    color: white;
+}
+.btn-restock:hover{
+    background-color: rgb(47, 61, 33);
+    color: rgb(221, 221, 221);
+}
+
+.btn-graph{
+    background-color: rgb(117, 89, 37);
+    color: white;
+}
+.btn-graph:hover{
+    background-color: rgb(85, 64, 25);
+    color: rgb(221, 221, 221);
+}

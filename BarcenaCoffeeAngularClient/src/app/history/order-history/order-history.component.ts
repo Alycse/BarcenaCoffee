@@ -17,9 +17,12 @@ export class OrderHistoryComponent implements OnInit {
   public drinks: Drink[];
   public pantries: Pantry[];
 
+  public drinkDist: [string, number][];
+
   constructor(private repository: RepositoryService) { }
 
   ngOnInit() {
+    this.getDrinkDist();
     this.getAllDrinks();
     this.getAllPantries();
     this.getAllOrders();
@@ -55,6 +58,20 @@ export class OrderHistoryComponent implements OnInit {
 
   public getPantryNameById(id: string){
     return this.pantries.find(d => d.id == id).pantryName;
+  }
+
+  public showOrderHistoryGraph(){
+    $('#graph-modal').modal();
+  }
+
+  public getDrinkDist(){
+    this.drinkDist = [
+      ['London', 8136000],
+      ['New York', 8538000],
+      ['Paris', 2244000],
+      ['Berlin', 3470000],
+      ['Kairo', 19500000]
+    ];
   }
 
 }

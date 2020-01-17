@@ -12,12 +12,14 @@
                     <th scope="col">Milk Carton Stock</th>
                 </tr>
             </thead>
-            <tbody *ngFor="let pantry of pantries">
+            <tbody *ngFor="let pantry of pantries; let i = index">
                 <tr>
                     <td>{{pantry.pantryName}}</td>
                     <td>{{getUnitsFromIngredientContainer(pantry.coffeeBeanUnits)}}</td>
                     <td>{{getUnitsFromIngredientContainer(pantry.sugarUnits)}}</td>
                     <td>{{getUnitsFromIngredientContainer(pantry.milkUnits)}}</td>
+                    <td><button class="btn btn-restock" (click)="restock(i)">Restock</button></td>
+                    <td><button class="btn btn-graph" (click)="showGraph(i)">Show Graph</button></td>
                 </tr>
             </tbody>
         </table>

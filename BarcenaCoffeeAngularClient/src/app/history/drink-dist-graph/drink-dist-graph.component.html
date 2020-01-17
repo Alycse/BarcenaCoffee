@@ -1,0 +1,13 @@
+
+<div id="drink-dist-graph-container" *ngIf="orders?.length > 0 && drinks?.length > 0">
+    <google-chart id="chart" #chart
+        [title]="title"
+        [type]="type"
+        [data]="data"
+        [columnNames]="columnNames"
+        [options] = "options">
+    </google-chart>
+</div>
+<div id="btn-back-container">
+    <button  class="btn btn-back" [routerLink]="['..']">Go Back</button>
+</div>

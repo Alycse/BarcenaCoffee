@@ -1,6 +1,8 @@
 <div id="order-history-container">
-    <div id="order-history-title">
+    <div id="order-history-header">
         Coffee Order History
+        <br>
+        <button class="btn" id="btn-graph" [routerLink]="['graph']">Show Graph</button>
     </div>
     <div *ngIf="orders?.length > 0 && drinks?.length > 0 && pantries?.length > 0">
         <table id="order-history-table" class="table">

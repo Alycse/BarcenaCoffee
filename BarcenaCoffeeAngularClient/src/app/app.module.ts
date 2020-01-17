@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router'
 import { HttpClientModule } from '@angular/common/http';
+import { GoogleChartsModule } from 'angular-google-charts';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -22,6 +23,7 @@ import { DatePipe } from '@angular/common';
   imports: [
     BrowserModule,
     HttpClientModule,
+    GoogleChartsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'order', loadChildren: "./order/order.module#OrderModule" },

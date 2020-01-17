@@ -1,0 +1,44 @@
+#drink-dist-graph-container{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    margin-top: 50px;
+    height: 600px;
+}
+
+#title{
+    text-align: center;
+    margin-top: 100px;
+
+    color: rgb(165, 146, 85);
+
+    font-size: 18px;
+}
+
+#chart{
+    width: 80%;
+}
+
+#btn-back-container{
+    text-align: center;
+}
+
+.btn-back{
+    background-color: rgb(97, 82, 49);
+    color: rgb(226, 219, 197);
+
+    width: 80%;
+    height: 50px;
+
+    font-size: 18px;
+}
+
+.btn-back:hover{
+    background-color: rgb(58, 47, 23);
+    color: rgb(197, 186, 151);
+
+    width: 80%;
+    height: 50px;
+
+    font-size: 18px;
+}
