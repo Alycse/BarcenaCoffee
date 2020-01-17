@@ -1,0 +1,23 @@
+<div id="order-history-container">
+    <div id="order-history-title">
+        Coffee Order History
+    </div>
+    <div *ngIf="orders?.length > 0 && drinks?.length > 0 && pantries?.length > 0">
+        <table id="order-history-table" class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Drink</th>
+                    <th scope="col">Pantry Used</th>
+                    <th scope="col">Date Ordered</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let order of orders">
+                <tr>
+                    <td>{{getDrinkNameById(order.drinkId)}}</td>
+                    <td>{{getPantryNameById(order.pantryId)}}</td>
+                    <td>{{order.orderDate}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
