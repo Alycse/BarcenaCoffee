@@ -16,6 +16,15 @@ namespace Entities.DataTransferObjects {
             get; set;
         }
 
+        [ForeignKey(nameof(Pantry))]
+        public Guid PantryId {
+            get; set;
+        }
+        public Pantry Pantry {
+            get; set;
+        }
+
+
         [Required(ErrorMessage = "Order Date created is required!")]
         public DateTime OrderDate {
             get; set;

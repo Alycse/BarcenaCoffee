@@ -14,6 +14,11 @@ namespace Entities.DataTransferObjects {
             get; set;
         }
 
+        [StringLength(180, ErrorMessage = "Drink Image File Name can't be longer than 180 characters!")]
+        public string DrinkImageFileName {
+            get; set;
+        }
+
         [Required(ErrorMessage = "Coffee Bean Units is required!")]
         public int CoffeeBeanUnits {
             get; set;

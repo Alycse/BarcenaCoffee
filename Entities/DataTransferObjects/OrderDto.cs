@@ -8,12 +8,21 @@ namespace Entities.DataTransferObjects {
         public Guid Id {
             get; set;
         }
+
         public Guid DrinkId {
             get; set;
         }
         public DrinkDto Drink {
             get; set;
         }
+
+        public Guid PantryId {
+            get; set;
+        }
+        public Pantry Pantry {
+            get; set;
+        }
+
         public DateTime OrderDate {
             get; set;
         }

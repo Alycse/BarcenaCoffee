@@ -8,6 +8,9 @@ namespace Entities.DataTransferObjects {
         public Guid Id {
             get; set;
         }
+        public string DrinkImageFileName {
+            get; set;
+        }
         public string DrinkName {
             get; set;
         }

@@ -8,18 +8,22 @@ using System.Text;
 namespace Entities.DataTransferObjects {
     public class PantryCreationDto {
 
-        [Required(ErrorMessage = "Coffee Bean Bag Amount is required!")]
-        public int CoffeeBeanBagAmount {
+        [StringLength(45, ErrorMessage = "Pantry Name can't be longer than 45 characters!")]
+        public string PantryName {
+            get; set;
+        }
+        [Required(ErrorMessage = "Coffee Bean Units Amount is required!")]
+        public int CoffeeBeanUnits {
             get; set;
         }
 
-        [Required(ErrorMessage = "Sugar Pack Amount is required!")]
-        public int SugarPackAmount {
+        [Required(ErrorMessage = "Sugar Units Amount is required!")]
+        public int SugarUnits {
             get; set;
         }
 
-        [Required(ErrorMessage = "Milk Carton Amount is required!")]
-        public int MilkCartonAmount {
+        [Required(ErrorMessage = "Milk Units Amount is required!")]
+        public int MilkUnits {
             get; set;
         }
     }

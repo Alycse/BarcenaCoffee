@@ -8,13 +8,16 @@ namespace Entities.DataTransferObjects {
         public Guid Id {
             get; set;
         }
-        public int CoffeeBeanBagAmount {
+        public string PantryName {
             get; set;
         }
-        public int SugarPackAmount {
+        public int CoffeeBeanUnits {
             get; set;
         }
-        public int MilkCartonAmount {
+        public int SugarUnits {
+            get; set;
+        }
+        public int MilkUnits {
             get; set;
         }
     }
