@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using BarcenaCoffee.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,6 +27,9 @@ namespace BarcenaCoffee {
         public void ConfigureServices (IServiceCollection services) {
             services.ConfigureCors();
             services.ConfigureIISIntegration();
+            services.ConfigureMySqlContext(Configuration);
+            services.ConfigureRepositoryWrapper();
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddControllers();
         }

@@ -16,18 +16,18 @@ namespace BarcenaCoffee.Controllers
     [ApiController]
     public class OrderController : ControllerBase {
 
-        private OrderRepository _orderRepository;
+        private RepositoryWrapper _repository;
         private IMapper _mapper;
 
-        public OrderController (OrderRepository repository, IMapper mapper) {
-            _orderRepository = repository;
+        public OrderController (RepositoryWrapper repository, IMapper mapper) {
+            _repository = repository;
             _mapper = mapper;
         }
 
         [HttpGet]
         public IActionResult GetAll () {
             try {
-                var orders = _orderRepository.GetAll();
+                var orders = _repository.Order.GetAll();
 
                 var ordersResult = _mapper.Map<IEnumerable<OrderDto>>(orders);
                 return Ok(ordersResult);
@@ -36,10 +36,26 @@ namespace BarcenaCoffee.Controllers
             }
         }
 
-        [HttpGet("{id}", Name = "GetById")]
+        [HttpGet("{id}", Name = "OrderById")]
         public IActionResult GetById (Guid id) {
             try {
-                var order = _orderRepository.GetById(id);
+                var order = _repository.Order.GetById(id);
+
+                if (order == null) {
+                    return NotFound();
+                } else {
+                    var orderResult = _mapper.Map<OrderDto>(order);
+                    return Ok(orderResult);
+                }
+            } catch (Exception ex) {
+                return StatusCode(500, "Internal server error");
+            }
+        }
+        
+        [HttpGet("{id}/order")]
+        public IActionResult GetWithDrinkById (Guid id) {
+            try {
+                var order = _repository.Order.GetWithDrinksById(id);
 
                 if (order == null) {
                     return NotFound();
@@ -52,17 +68,71 @@ namespace BarcenaCoffee.Controllers
             }
         }
 
-        [HttpGet("{id}/drink")]
-        public IActionResult GetWithDrinksById (Guid id) {
+        [HttpPost]
+        public IActionResult Create ([FromBody]OrderCreationDto order) {
             try {
-                var owner = _orderRepository.GetWithDrinksById(id);
-
-                if (owner == null) {
-                    return NotFound();
-                } else {
-                    var orderResult = _mapper.Map<OrderDto>(owner);
-                    return Ok(orderResult);
+                if (order == null) {
+                    return BadRequest("Order object is null");
                 }
+
+                if (!ModelState.IsValid) {
+                    return BadRequest("Invalid model object");
+                }
+
+                var orderEntity = _mapper.Map<Order>(order);
+
+                _repository.Order.Create(orderEntity);
+                _repository.Save();
+
+                var createdOrder = _mapper.Map<OrderDto>(orderEntity);
+
+                return CreatedAtRoute("OrderById", new {
+                    id = createdOrder.Id
+                }, createdOrder);
+            } catch (Exception ex) {
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Update (Guid id, [FromBody]OrderUpdateDto order) {
+            try {
+                if (order == null) {
+                    return BadRequest("Order object is null");
+                }
+
+                if (!ModelState.IsValid) {
+                    return BadRequest("Invalid model object");
+                }
+
+                var orderEntity = _repository.Order.GetById(id);
+                if (orderEntity == null) {
+                    return NotFound();
+                }
+
+                _mapper.Map(order, orderEntity);
+
+                _repository.Order.Update(orderEntity);
+                _repository.Save();
+
+                return NoContent();
+            } catch (Exception ex) {
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteOrder (Guid id) {
+            try {
+                var order = _repository.Order.GetById(id);
+                if (order == null) {
+                    return NotFound();
+                }
+
+                _repository.Order.Delete(order);
+                _repository.Save();
+
+                return NoContent();
             } catch (Exception ex) {
                 return StatusCode(500, "Internal server error");
             }

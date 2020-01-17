@@ -5,15 +5,16 @@ using System.Threading.Tasks;
 using Contracts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Repository;
 
 namespace BarcenaCoffee.Controllers {
 
     [Route("api/[controller]")]
     [ApiController]
     public class WeatherForecast : ControllerBase {
-        private IRepositoryWrapper _repoWrapper;
+        private RepositoryWrapper _repoWrapper;
 
-        public WeatherForecast (IRepositoryWrapper repoWrapper) {
+        public WeatherForecast (RepositoryWrapper repoWrapper) {
             _repoWrapper = repoWrapper;
         }
 
