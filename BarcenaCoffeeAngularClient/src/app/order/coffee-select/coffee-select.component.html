@@ -1,0 +1,51 @@
+<div id="coffee-select-container" *ngIf="drinks?.length > 0">
+    <div id="coffee-selection" class="block">
+        <div class="coffee-option-container" *ngFor="let drink of drinks; let i = index">
+            <a (click)="selectDrink(i)">
+                <div class="coffee-option" [ngClass]="{'selected-coffee-option': selectedDrinkIndex == i}">
+                    <img class="coffee-option-image" src="assets/coffee/{{drink.drinkImageFileName}}">
+                    <div class="coffee-option-name">
+                        {{drink.drinkName}}
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div id="coffee-info" class="block" *ngIf="selectedDrinkIndex != -1">
+        <img id="coffee-info-image" src="assets/coffee/{{drinks[selectedDrinkIndex].drinkImageFileName}}">
+        <div id="coffee-info-name">
+            {{drinks[selectedDrinkIndex].drinkName}}
+        </div>
+        <div id="coffee-info-ingredients">
+            Ingredients:
+            <div class="coffee-info-ingredient" *ngIf="drinks[selectedDrinkIndex].coffeeBeanUnits > 0">
+                {{drinks[selectedDrinkIndex].coffeeBeanUnits}} Units of Coffee Beans
+            </div>
+            <div class="coffee-info-ingredient" *ngIf="drinks[selectedDrinkIndex].sugarUnits > 0">
+                {{drinks[selectedDrinkIndex].sugarUnits}} Units of Sugar
+            </div>
+            <div class="coffee-info-ingredient" *ngIf="drinks[selectedDrinkIndex].milkUnits > 0">
+                {{drinks[selectedDrinkIndex].milkUnits}} Units of Milk
+            </div>
+        </div>
+    </div>
+
+    <div id="right-panel-container" class="block" *ngIf="pantries?.length > 0">
+        <div id="pantries" *ngFor="let pantry of pantries; let i = index">
+            <button class="btn btn-pantry" [ngClass]="{'selected-btn-pantry': selectedPantryIndex == i}" (click)="selectPantry(i)">{{pantry.pantryName}}</button>
+        </div>
+        <button class="btn btn-order" (click)="orderSelectedDrink()">Order</button>
+    </div>
+
+</div>
+
+<app-success-modal
+  [modalText]="'Action completed successfully'" 
+  [okButtonText]="'OK'"
+  (redirectOnOK)="redirectToOrderHistory()"></app-success-modal>
+ 
+<app-error-modal
+  [modalText]="errorMessage" 
+  [okButtonText]="'OK'"></app-error-modal>
+        
