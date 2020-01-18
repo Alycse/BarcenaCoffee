@@ -10,13 +10,18 @@
     font-size: 22px;
 }
 
-#order-history-table{
+#order-history-table-container{
+    margin-top: 40px;
     margin-left:auto; 
     margin-right:auto;
-    margin-top: 40px;
 
-    width: 70%;
+    height: 600px;
+    width: 75%;
 
+    overflow-y: auto;
+}
+
+#order-history-table{
     color: rgb(235, 231, 226);
 
     font-size: 16px;

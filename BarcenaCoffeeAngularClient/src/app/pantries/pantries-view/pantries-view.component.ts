@@ -4,6 +4,7 @@ import { Pantry } from './../../_interfaces/pantry.model';
 
 import { RepositoryService } from './../../shared/services/repository.service';
 import { PantrySettingsService } from './../../shared/services/pantry-settings.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pantries-view',
@@ -14,8 +15,9 @@ import { PantrySettingsService } from './../../shared/services/pantry-settings.s
 export class PantriesViewComponent implements OnInit {
 
   public pantries: Pantry[];
+  restockingPantryIndex: number = 0;
 
-  constructor(private repository: RepositoryService, private pantrySettings: PantrySettingsService) { }
+  constructor(private repository: RepositoryService, private pantrySettings: PantrySettingsService, private router: Router) { }
 
   ngOnInit() {
     this.getAllPantries();
@@ -29,8 +31,17 @@ export class PantriesViewComponent implements OnInit {
     })
   }
 
-  public getUnitsFromIngredientContainer(ingredientContainerAmount: number){
-    return this.pantrySettings.getUnitsFromIngredientContainer(ingredientContainerAmount);
+  public getIngredientContainerAmtFromUnits(units: number){
+    return this.pantrySettings.getIngredientContainerAmtFromUnits(units);
+  }
+
+  public showStockGraph(pantryId){
+    this.router.navigate([`pantries/${pantryId}`]);
+  }
+
+  public restock(pantryIndex: number){
+    this.restockingPantryIndex = pantryIndex;
+    $('#restock-modal').modal();
   }
 
 }

@@ -4,7 +4,7 @@
         <br>
         <button class="btn" id="btn-graph" [routerLink]="['graph']">Show Graph</button>
     </div>
-    <div *ngIf="orders?.length > 0 && drinks?.length > 0 && pantries?.length > 0">
+    <div id="order-history-table-container" *ngIf="orders?.length > 0 && drinks?.length > 0 && pantries?.length > 0">
         <table id="order-history-table" class="table">
             <thead>
                 <tr>

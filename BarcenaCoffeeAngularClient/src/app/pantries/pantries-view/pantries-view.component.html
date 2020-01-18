@@ -2,7 +2,7 @@
     <div id="pantries-view-title">
         Pantries List
     </div>
-    <div *ngIf="pantries?.length > 0">
+    <div  id="pantries-view-table-container" *ngIf="pantries?.length > 0">
         <table id="pantries-view-table" class="table">
             <thead>
                 <tr>
@@ -15,13 +15,16 @@
             <tbody *ngFor="let pantry of pantries; let i = index">
                 <tr>
                     <td>{{pantry.pantryName}}</td>
-                    <td>{{getUnitsFromIngredientContainer(pantry.coffeeBeanUnits)}}</td>
-                    <td>{{getUnitsFromIngredientContainer(pantry.sugarUnits)}}</td>
-                    <td>{{getUnitsFromIngredientContainer(pantry.milkUnits)}}</td>
+                    <td>{{getIngredientContainerAmtFromUnits(pantry.coffeeBeanUnits)}}</td>
+                    <td>{{getIngredientContainerAmtFromUnits(pantry.sugarUnits)}}</td>
+                    <td>{{getIngredientContainerAmtFromUnits(pantry.milkUnits)}}</td>
                     <td><button class="btn btn-restock" (click)="restock(i)">Restock</button></td>
-                    <td><button class="btn btn-graph" (click)="showGraph(i)">Show Graph</button></td>
+                    <td><button class="btn btn-graph" (click)="showStockGraph(pantry.id)">Show Graph</button></td>
                 </tr>
             </tbody>
         </table>
     </div>
 </div>
+<app-restock-modal *ngIf="pantries?.length > 0"
+  [pantry]="pantries[restockingPantryIndex]"
+  (redirectOnOK)="redirectToOrderHistory()"></app-restock-modal>

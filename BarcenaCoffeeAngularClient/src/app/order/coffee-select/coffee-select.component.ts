@@ -66,7 +66,7 @@ export class CoffeeSelectComponent implements OnInit {
     let apiUrl = 'api/order';
     this.repository.create(apiUrl, order)
       .subscribe(res => {
-        $('#successModal').modal();
+        $('#success-modal').modal();
       }
     )
   }
