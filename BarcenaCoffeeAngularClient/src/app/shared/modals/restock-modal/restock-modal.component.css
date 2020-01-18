@@ -1,0 +1,65 @@
+.modal-content{
+    background-color: rgb(61, 44, 25);
+}
+
+.title{
+    margin-bottom: 80px;
+}
+
+.modal-body{
+    padding-top: 60px;
+    padding-bottom: 20px;
+}
+
+.modal-body p {
+    text-align: center;
+
+    font-size: 24px;
+
+    color: rgb(250, 243, 232);
+}
+ 
+.modal-dialog {
+    margin-top: 150px;
+    width: 50%;
+}
+
+.btn-modal{
+    width: 100%;
+
+    font-size: 16px;
+    
+    padding: 20px;
+
+    margin-top: 40px;
+
+    background-color: rgb(100, 82, 52);
+    color: rgb(250, 243, 232);
+}
+
+.btn-modal:hover{
+    background-color: rgb(78, 61, 31);
+}
+
+.ingredient-container{
+    color: rgb(241, 224, 187);
+    
+    display: flex;
+    justify-content: space-between;
+
+    width: 70%;
+
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ingredient-name{
+    margin-left: 10px;
+    margin-right: 30px;
+}
+
+.form-control-ingredient{
+    width: 150px;
+}

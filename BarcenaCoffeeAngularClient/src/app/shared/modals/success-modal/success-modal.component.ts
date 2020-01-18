@@ -15,7 +15,7 @@ export class SuccessModalComponent implements OnInit {
   ngOnInit() {
   }
  
-  public emmitEvent(){
+  public emitEvent(){
     this.redirectOnOK.emit();
   }
  
