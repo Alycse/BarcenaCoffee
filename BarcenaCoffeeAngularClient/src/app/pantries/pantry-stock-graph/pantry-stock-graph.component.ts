@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Pantry } from './../../_interfaces/pantry.model';
 
 import { Router, ActivatedRoute } from '@angular/router';
+
 import { RepositoryService } from './../../shared/services/repository.service';
 import { PantrySettingsService } from './../../shared/services/pantry-settings.service';
 import { ErrorHandlerService } from './../../shared/services/error-handler.service';
@@ -37,7 +38,6 @@ export class PantryStockGraphComponent implements OnInit {
     this.repository.getData(apiAddress)
     .subscribe(result => {
       this.pantry = result as Pantry;
-      console.log(this.pantry.coffeeBeanUnits);
       this.title = `${this.pantry.pantryName} Stock`;
       this.getPantryStockData();
     },(error => {

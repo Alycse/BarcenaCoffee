@@ -16,7 +16,7 @@
     margin-right:auto;
 
     height: 600px;
-    width: 75%;
+    width: 100%;
 
     overflow-y: auto;
 }
@@ -28,13 +28,11 @@
 }
 
 #btn-drink-graph-container{
-    text-align: center;
     margin-top: 30px;
 }
 #btn-drink-graph{
     background-color: rgb(117, 89, 37);
     color: white;
-    text-align: center;
 }
 #btn-drink-graph:hover{
     background-color: rgb(85, 64, 25);
@@ -49,4 +47,11 @@
     margin-top: 50px;
 
     font-size: 18px;
+}
+
+#order-history-body{
+    width: 70%;
+
+    margin-left: auto;
+    margin-right: auto;
 }

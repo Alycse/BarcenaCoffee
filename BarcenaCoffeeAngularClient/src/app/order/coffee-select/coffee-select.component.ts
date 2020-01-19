@@ -89,6 +89,7 @@ export class CoffeeSelectComponent implements OnInit {
 
   public consumePantryStock(pantry: Pantry, drink: Drink){
     let isOutOfStock: boolean = false;
+    
     if(pantry.coffeeBeanUnits >= drink.coffeeBeanUnits){
       pantry.coffeeBeanUnits = pantry.coffeeBeanUnits - drink.coffeeBeanUnits;
     }else{
@@ -107,6 +108,7 @@ export class CoffeeSelectComponent implements OnInit {
       this.errorMessage = pantry.pantryName + " is out of stock of sugar!";
       isOutOfStock = true;
     }
+
     if(isOutOfStock){
       $('#error-modal').modal();
       return;
