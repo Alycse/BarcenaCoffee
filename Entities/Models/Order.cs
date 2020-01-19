@@ -21,7 +21,7 @@ namespace Entities.Models {
         }
 
         [ForeignKey(nameof(Pantry))]
-        public Guid PantryId {
+        public Guid? PantryId {
             get; set;
         }
         public Pantry Pantry {

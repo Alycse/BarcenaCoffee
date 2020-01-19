@@ -16,7 +16,7 @@ namespace Entities.DataTransferObjects {
             get; set;
         }
 
-        public Guid PantryId {
+        public Guid? PantryId {
             get; set;
         }
         public Pantry Pantry {
