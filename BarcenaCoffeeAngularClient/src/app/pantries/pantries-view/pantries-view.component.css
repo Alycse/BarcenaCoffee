@@ -15,7 +15,7 @@
     margin-left:auto; 
     margin-right:auto;
 
-    height: 650px;
+    height: 600px;
     width: 75%;
 
     overflow-y: auto;
@@ -43,4 +43,28 @@
 .btn-graph:hover{
     background-color: rgb(85, 64, 25);
     color: rgb(221, 221, 221);
+}
+
+#btn-create-new-container{
+    text-align: center;
+    margin-top: 50px;
+}
+
+#btn-create-new{
+    background-color: rgb(73, 107, 42);
+    color: white;
+}
+#btn-create-new:hover{
+    background-color: rgb(105, 150, 64);
+    color: white;
+}
+
+.empty-table{
+    color: rgb(248, 239, 223);
+
+    text-align: center;
+
+    margin-top: 50px;
+
+    font-size: 18px;
 }

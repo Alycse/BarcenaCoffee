@@ -5,6 +5,7 @@ import { Pantry } from './../../_interfaces/pantry.model';
 import { RepositoryService } from './../../shared/services/repository.service';
 import { PantrySettingsService } from './../../shared/services/pantry-settings.service';
 import { Router } from '@angular/router';
+import { del } from 'selenium-webdriver/http';
 
 @Component({
   selector: 'app-pantries-view',
@@ -16,6 +17,11 @@ export class PantriesViewComponent implements OnInit {
 
   public pantries: Pantry[];
   restockingPantryIndex: number = 0;
+  public pantryIdToDelete: string;
+
+  public confirmationMessage: string;
+  public confirmationCancelButtonText: string;
+  public confirmationOkButtonText: string;
 
   constructor(private repository: RepositoryService, private pantrySettings: PantrySettingsService, private router: Router) { }
 
@@ -42,6 +48,30 @@ export class PantriesViewComponent implements OnInit {
   public restock(pantryIndex: number){
     this.restockingPantryIndex = pantryIndex;
     $('#restock-modal').modal();
+  }
+
+  public showDeletePantryConfirmation(pantry: Pantry){
+    this.confirmationMessage = "Are you sure you want to delete " + pantry.pantryName + "?";
+    this.confirmationOkButtonText = "Yes";
+    this.confirmationCancelButtonText = "No";
+    this.pantryIdToDelete = pantry.id;
+    $('#confirmation-modal').modal();
+  }
+
+  public deletePantry(){
+    let deleteAddress: string = `api/pantry/${this.pantryIdToDelete}`;
+    this.repository.delete(deleteAddress)
+      .subscribe(res => {
+        window.location.reload();
+      },
+      (error) => {
+        //this.errorHandler.handleError(error);
+        //this.errorMessage = this.errorHandler.errorMessage;
+    })
+  }
+
+  public showCreatePantryModal(){
+    $('#create-pantry-modal').modal();
   }
 
 }
