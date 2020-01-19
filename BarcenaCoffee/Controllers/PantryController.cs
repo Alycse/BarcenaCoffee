@@ -106,7 +106,7 @@ namespace BarcenaCoffee.Controllers {
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeletePantry (Guid id) {
+        public IActionResult Delete (Guid id) {
             try {
                 var pantry = _repository.Pantry.GetById(id);
                 if (pantry == null) {

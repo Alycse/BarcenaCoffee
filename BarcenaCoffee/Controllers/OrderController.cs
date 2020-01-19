@@ -122,7 +122,7 @@ namespace BarcenaCoffee.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteOrder (Guid id) {
+        public IActionResult Delete (Guid id) {
             try {
                 var order = _repository.Order.GetById(id);
                 if (order == null) {
