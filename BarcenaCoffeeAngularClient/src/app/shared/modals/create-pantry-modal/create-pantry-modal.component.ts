@@ -59,7 +59,7 @@ export class CreatePantryModalComponent implements OnInit {
         milkUnits: this.pantrySettings.getUnitsFromIngredientContainerAmt(createPantryFormValue.milkCartonQuantity)
       }
 
-      let apiAddress = `api/order`;
+      let apiAddress = `api/pantry`;
       this.repository.create(apiAddress, pantry)
         .subscribe(res => {
           window.location.reload();
