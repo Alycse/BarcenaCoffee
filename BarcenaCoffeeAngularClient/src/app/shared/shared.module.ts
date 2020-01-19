@@ -6,6 +6,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SuccessModalComponent } from './modals/success-modal/success-modal.component';
 import { ErrorModalComponent } from './modals/error-modal/error-modal.component';
 import { RestockModalComponent } from './modals/restock-modal/restock-modal.component';
+import { ConfirmationModalComponent } from './modals/confirmation-modal/confirmation-modal.component';
+import { CreatePantryModalComponent } from './modals/create-pantry-modal/create-pantry-modal.component';
  
 @NgModule({
     imports: [
@@ -16,12 +18,16 @@ import { RestockModalComponent } from './modals/restock-modal/restock-modal.comp
     declarations: [
         SuccessModalComponent,
         ErrorModalComponent,
-        RestockModalComponent
+        RestockModalComponent,
+        ConfirmationModalComponent,
+        CreatePantryModalComponent
     ],
     exports: [
         SuccessModalComponent,
         ErrorModalComponent,
-        RestockModalComponent
+        RestockModalComponent,
+        ConfirmationModalComponent,
+        CreatePantryModalComponent
     ]
 })
 export class SharedModule { }

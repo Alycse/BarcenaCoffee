@@ -1,18 +1,40 @@
-.modal-title {
-    margin: 0;
-    line-height: 1.42857143;
-    font-size: 30px;
-    text-align: center;
+.modal-content{
+    background-color: rgb(88, 30, 30);
 }
- 
+
 .modal-body p {
     text-align: center;
     margin-top: 10px;
+
+    font-size: 24px;
+
+    color: rgb(250, 243, 232);
+
+    padding: 20px;
 }
  
 @media (min-width: 768px){
     .modal-dialog {
-        width: 500px;
+        width: 600px;
         margin: 20% auto;
     }
+}
+
+.modal-footer{
+    padding: 0;
+}
+
+.btn-modal{
+    width: 100%;
+
+    font-size: 16px;
+    
+    padding: 10px;
+
+    background-color: rgb(100, 82, 52);
+    color: rgb(250, 243, 232);
+}
+
+.btn-modal:hover{
+    background-color: rgb(78, 61, 31);
 }

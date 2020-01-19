@@ -21,7 +21,7 @@
  
 .modal-dialog {
     margin-top: 150px;
-    width: 40%;
+    width: 50%;
 }
 
 .btn-modal{
@@ -61,13 +61,20 @@
     margin-right: auto;
 }
 
-.ingredient-name{
+.form-name{
     margin-left: 10px;
     margin-right: 30px;
 }
 
 .form-control-ingredient{
-    width: 150px;
+    width: 180px;
+}
+.form-control-name{
+    width: 250px;
+}
+
+#name-title{
+    margin-bottom: 5px;
 }
 
 .error{

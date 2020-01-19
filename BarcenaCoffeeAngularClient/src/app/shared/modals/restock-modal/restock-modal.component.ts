@@ -53,9 +53,6 @@ export class RestockModalComponent implements OnInit {
 
   public restockPantry(restockFormValue) {
     if (this.restockForm.valid) {
-
-      console.log("lol");
-
       this.pantry.coffeeBeanUnits = this.pantrySettings.getUnitsFromIngredientContainerAmt(restockFormValue.coffeeBeanBagQuantity),
       this.pantry.sugarUnits = this.pantrySettings.getUnitsFromIngredientContainerAmt(restockFormValue.sugarPackQuantity),
       this.pantry.milkUnits = this.pantrySettings.getUnitsFromIngredientContainerAmt(restockFormValue.milkCartonQuantity)
@@ -63,17 +60,19 @@ export class RestockModalComponent implements OnInit {
       let apiAddress = `api/pantry/${this.pantry.id}`;
       this.repository.update(apiAddress, this.pantry)
         .subscribe(res => {
-          console.log("Updated!");
           $('#restock-modal').modal('hide')
         },
           (error => {
-            console.log("error: " + error);
             //this.errorHandler.handleError(error);
             //this.errorMessage = this.errorHandler.errorMessage;
           })
       )
 
     }
+  }
+
+  public cancel(){
+    $('#restock-modal').modal('hide')
   }
 
 }

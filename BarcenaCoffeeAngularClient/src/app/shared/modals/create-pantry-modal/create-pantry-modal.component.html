@@ -1,0 +1,55 @@
+<div id="create-pantry-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p class="title">Creating new pantry...</p>
+                    <form [formGroup]="createPantryForm" autocomplete="off" novalidate (ngSubmit)="createPantry(createPantryForm.value)">
+                        <div class="form-group">
+                            <div class="name-title">
+                                Pantry Name*
+                            </div>
+                            <div>
+                                <input type="text" class="form-control form-control-name" formControlName="pantryName"
+                                    placeholder="Enter the name of the Pantry">
+                                <em class="error" *ngIf="validateControl('pantryName') && hasError('pantryName', 'required')">*This field is required</em>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="ingredient-name">
+                                Coffee Bean Bag Quantity*
+                            </div>
+                            <div>
+                                <input type="number" class="form-control form-control-ingredient" formControlName="coffeeBeanBagQuantity"
+                                    placeholder="Enter qty. of Coffee Bean Bags">
+                                <em class="error" *ngIf="validateControl('coffeeBeanBagQuantity') && hasError('coffeeBeanBagQuantity', 'required')">*This field is required</em>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="ingredient-name">
+                                Sugar Pack Quantity*
+                            </div>
+                            <div>
+                                <input type="number" class="form-control form-control-ingredient" formControlName="sugarPackQuantity" 
+                                    placeholder="Enter qty. of Sugar Packs">
+                                <em class="error" *ngIf="validateControl('sugarPackQuantity') && hasError('sugarPackQuantity', 'required')">*This field is required</em>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="ingredient-name">
+                                Milk Carton Quantity*
+                            </div>
+                            <div>
+                                <input type="number" class="form-control form-control-ingredient" formControlName="milkCartonQuantity"
+                                    placeholder="Enter qty. of Milk Cartons">
+                                <em class="error" *ngIf="validateControl('milkCartonQuantity') && hasError('milkCartonQuantity', 'required')">*This field is required</em>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-modal btn-modal-cancel" (click)="cancel()">Cancel</button>
+                            <button type="submit" class="btn btn-modal" [disabled]="!createPantryForm.valid">Confirm</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
