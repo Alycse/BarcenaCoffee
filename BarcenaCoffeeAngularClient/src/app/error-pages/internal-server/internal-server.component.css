@@ -1,0 +1,13 @@
+#container{
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+
+    color: #ca9d6d;
+
+    margin-top: 15%;
+}
+
+#code{
+    font-size: 160px;
+}

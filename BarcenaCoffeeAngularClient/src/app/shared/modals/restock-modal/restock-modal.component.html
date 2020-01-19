@@ -6,7 +6,7 @@
                 <form [formGroup]="restockForm" autocomplete="off" novalidate (ngSubmit)="restockPantry(restockForm.value)">
                     <div class="form-group">
                         <div class="ingredient-name">
-                            Coffee Bean Bag Quantity*
+                            Coffee Bean Bag Quantity<span class="requirement-sign">*</span>
                         </div>
                         <div>
                             <input type="number" class="form-control form-control-ingredient" id="coffee-bean-bag-qty" formControlName="coffeeBeanBagQuantity"
@@ -17,7 +17,7 @@
                     </div>
                     <div class="form-group">
                         <div class="ingredient-name">
-                            Sugar Pack Quantity*
+                            Sugar Pack Quantity<span class="requirement-sign">*</span>
                         </div>
                         <div>
                             <input type="number" class="form-control form-control-ingredient" id="sugar-pack-qty" formControlName="sugarPackQuantity" 
@@ -28,7 +28,7 @@
                     </div>
                     <div class="form-group">
                         <div class="ingredient-name">
-                            Milk Carton Quantity*
+                            Milk Carton Quantity<span class="requirement-sign">*</span>
                         </div>
                         <div>
                             <input type="number" class="form-control form-control-ingredient" id="milk-carton-qty" formControlName="milkCartonQuantity"
@@ -46,3 +46,9 @@
         </div>
     </div>
 </div>
+
+<app-error-modal
+  [modalText]="errorMessage" 
+  [okButtonText]="'OK'"
+>
+</app-error-modal>

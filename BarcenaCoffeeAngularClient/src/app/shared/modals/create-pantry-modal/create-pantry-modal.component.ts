@@ -5,6 +5,7 @@ import { RepositoryService } from './../../../../app/shared/services/repository.
 
 import { Component, OnInit, Input } from '@angular/core';
 import { PantrySettingsService } from './../../../shared/services/pantry-settings.service';
+import { ErrorHandlerService } from './../../../shared/services/error-handler.service';
 import { Router } from '@angular/router';
 
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -17,7 +18,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class CreatePantryModalComponent implements OnInit {
   public createPantryForm: FormGroup;
 
-  constructor(private pantrySettings: PantrySettingsService, private repository: RepositoryService, private router: Router) { }
+  public errorMessage: string;
+
+  constructor(private pantrySettings: PantrySettingsService, private repository: RepositoryService, 
+    private router: Router, private errorHandler: ErrorHandlerService) { }
 
   ngOnInit() {
     this.createPantryForm = new FormGroup({
@@ -55,17 +59,17 @@ export class CreatePantryModalComponent implements OnInit {
         milkUnits: this.pantrySettings.getUnitsFromIngredientContainerAmt(createPantryFormValue.milkCartonQuantity)
       }
 
-      let apiAddress = `api/pantry`;
+      let apiAddress = `api/order`;
       this.repository.create(apiAddress, pantry)
         .subscribe(res => {
-          $('#create-pantry-modal').modal('hide')
           window.location.reload();
         },
           (error => {
-            //this.errorHandler.handleError(error);
-            //this.errorMessage = this.errorHandler.errorMessage;
+            this.errorHandler.handleError(error);
+            this.errorMessage = this.errorHandler.errorMessage;
           })
       )
+      $('#create-pantry-modal').modal('hide')
 
     }
   }

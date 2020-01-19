@@ -5,6 +5,7 @@ import { Pantry } from './../../_interfaces/pantry.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RepositoryService } from './../../shared/services/repository.service';
 import { PantrySettingsService } from './../../shared/services/pantry-settings.service';
+import { ErrorHandlerService } from './../../shared/services/error-handler.service';
 
 @Component({
   selector: 'app-pantry-stock-graph',
@@ -22,7 +23,10 @@ export class PantryStockGraphComponent implements OnInit {
   public width: number = 700;
   public height: number = 400;
 
-  constructor(private repository: RepositoryService, private router: Router, private activeRoute: ActivatedRoute, private pantrySettings: PantrySettingsService) { }
+  public errorMessage: string;
+
+  constructor(private repository: RepositoryService, private router: Router, 
+    private activeRoute: ActivatedRoute, private pantrySettings: PantrySettingsService, private errorHandler: ErrorHandlerService) { }
 
   ngOnInit() {
     this.getPantry(this.activeRoute.snapshot.params['id']);
@@ -36,7 +40,11 @@ export class PantryStockGraphComponent implements OnInit {
       console.log(this.pantry.coffeeBeanUnits);
       this.title = `${this.pantry.pantryName} Stock`;
       this.getPantryStockData();
-    });
+    },(error => {
+          this.errorHandler.handleError(error);
+          this.errorMessage = this.errorHandler.errorMessage;
+        })
+    )
   }
 
   public getPantryStockData(){

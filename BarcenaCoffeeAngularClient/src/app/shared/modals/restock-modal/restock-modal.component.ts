@@ -4,6 +4,7 @@ import { RepositoryService } from './../../../../app/shared/services/repository.
 
 import { Component, OnInit, Input } from '@angular/core';
 import { PantrySettingsService } from './../../../shared/services/pantry-settings.service';
+import { ErrorHandlerService } from './../../../shared/services/error-handler.service';
 
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -17,7 +18,10 @@ export class RestockModalComponent implements OnInit {
 
   public restockForm: FormGroup;
 
-  constructor(private pantrySettings: PantrySettingsService, private repository: RepositoryService) { }
+  public errorMessage: string;
+
+  constructor(private pantrySettings: PantrySettingsService, private repository: RepositoryService, 
+    private errorHandler: ErrorHandlerService) { }
 
   ngOnInit() {
     this.restockForm = new FormGroup({
@@ -60,14 +64,13 @@ export class RestockModalComponent implements OnInit {
       let apiAddress = `api/pantry/${this.pantry.id}`;
       this.repository.update(apiAddress, this.pantry)
         .subscribe(res => {
-          $('#restock-modal').modal('hide')
         },
           (error => {
-            //this.errorHandler.handleError(error);
-            //this.errorMessage = this.errorHandler.errorMessage;
+            this.errorHandler.handleError(error);
+            this.errorMessage = this.errorHandler.errorMessage;
           })
       )
-
+      $('#restock-modal').modal('hide');
     }
   }
 

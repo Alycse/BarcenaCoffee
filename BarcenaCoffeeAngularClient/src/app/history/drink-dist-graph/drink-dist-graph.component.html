@@ -11,3 +11,9 @@
 <div id="btn-back-container">
     <button  class="btn btn-back" [routerLink]="['..']">Go Back</button>
 </div>
+
+<app-error-modal
+  [modalText]="errorMessage" 
+  [okButtonText]="'OK'"
+>
+</app-error-modal>

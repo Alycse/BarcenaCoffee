@@ -74,3 +74,8 @@
     color: red;
     position: absolute;
 }
+
+.requirement-sign{
+    color: rgb(241, 179, 155);
+    font-style: italic;
+}

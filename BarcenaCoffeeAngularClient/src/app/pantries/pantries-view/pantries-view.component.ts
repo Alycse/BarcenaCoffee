@@ -4,8 +4,9 @@ import { Pantry } from './../../_interfaces/pantry.model';
 
 import { RepositoryService } from './../../shared/services/repository.service';
 import { PantrySettingsService } from './../../shared/services/pantry-settings.service';
+import { ErrorHandlerService } from './../../shared/services/error-handler.service';
+
 import { Router } from '@angular/router';
-import { del } from 'selenium-webdriver/http';
 
 @Component({
   selector: 'app-pantries-view',
@@ -23,7 +24,10 @@ export class PantriesViewComponent implements OnInit {
   public confirmationCancelButtonText: string;
   public confirmationOkButtonText: string;
 
-  constructor(private repository: RepositoryService, private pantrySettings: PantrySettingsService, private router: Router) { }
+  public errorMessage: string;
+
+  constructor(private repository: RepositoryService, private pantrySettings: PantrySettingsService, 
+    private router: Router, private errorHandler: ErrorHandlerService) { }
 
   ngOnInit() {
     this.getAllPantries();
@@ -34,7 +38,11 @@ export class PantriesViewComponent implements OnInit {
     this.repository.getData(apiAddress)
     .subscribe(result => {
       this.pantries = result as Pantry[];
-    })
+    },(error => {
+          this.errorHandler.handleError(error);
+          this.errorMessage = this.errorHandler.errorMessage;
+        })
+    )
   }
 
   public getIngredientContainerAmtFromUnits(units: number){
@@ -63,11 +71,12 @@ export class PantriesViewComponent implements OnInit {
     this.repository.delete(deleteAddress)
       .subscribe(res => {
         window.location.reload();
-      },
-      (error) => {
-        //this.errorHandler.handleError(error);
-        //this.errorMessage = this.errorHandler.errorMessage;
-    })
+      },(error => {
+            this.errorHandler.handleError(error);
+            this.errorMessage = this.errorHandler.errorMessage;
+          })
+      )
+      $('#create-pantry-modal').modal('hide')
   }
 
   public showCreatePantryModal(){

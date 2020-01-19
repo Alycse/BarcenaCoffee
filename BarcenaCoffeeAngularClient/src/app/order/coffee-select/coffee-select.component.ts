@@ -5,6 +5,7 @@ import { Pantry } from './../../_interfaces/pantry.model';
 import { CreationOrder } from '../../_interfaces/creation-order.model';
 
 import { RepositoryService } from './../../shared/services/repository.service';
+import { ErrorHandlerService } from './../../shared/services/error-handler.service';
 import { DatePipe } from '@angular/common';
 
 import { Router } from '@angular/router';
@@ -25,7 +26,8 @@ export class CoffeeSelectComponent implements OnInit {
   public successMessage: string;
   public errorMessage: string;
 
-  constructor(private repository: RepositoryService, private datePipe: DatePipe, private router: Router) { }
+  constructor(private repository: RepositoryService, private datePipe: DatePipe, 
+    private router: Router, private errorHandler: ErrorHandlerService) { }
 
   ngOnInit() {
     this.getAllDrinks();
@@ -38,7 +40,11 @@ export class CoffeeSelectComponent implements OnInit {
     .subscribe(result => {
       this.pantries = result as Pantry[];
       this.selectPantry(0);
-    })
+    },(error => {
+          this.errorHandler.handleError(error);
+          this.errorMessage = this.errorHandler.errorMessage;
+        })
+    )
   }
 
   public getAllDrinks(){
@@ -47,7 +53,11 @@ export class CoffeeSelectComponent implements OnInit {
     .subscribe(result => {
       this.drinks = result as Drink[];
       this.selectDrink(0);
-    })
+    },(error => {
+          this.errorHandler.handleError(error);
+          this.errorMessage = this.errorHandler.errorMessage;
+        })
+    )
   }
 
   public selectDrink(index: number){
@@ -70,7 +80,10 @@ export class CoffeeSelectComponent implements OnInit {
     this.repository.create(apiAddress, order)
       .subscribe(res => {
         this.consumePantryStock(this.pantries[this.selectedPantryIndex], this.drinks[this.selectedDrinkIndex]);
-      }
+      },(error => {
+        this.errorHandler.handleError(error);
+        this.errorMessage = this.errorHandler.errorMessage;
+      })
     )
   }
 
@@ -101,13 +114,12 @@ export class CoffeeSelectComponent implements OnInit {
       let apiAddress = `api/pantry/${pantry.id}`;
       this.repository.update(apiAddress, pantry)
         .subscribe(res => {
-          this.successMessage = drink.drinkName + " was successfully ordered!";
+          this.successMessage = drink.drinkName + " was successfully ordered\nat " + pantry.pantryName + "!";
           $('#success-modal').modal();
-          console.log("success");
         },
         (error => {
-          //this.errorHandler.handleError(error);
-          //this.errorMessage = this.errorHandler.errorMessage;
+          this.errorHandler.handleError(error);
+          this.errorMessage = this.errorHandler.errorMessage;
         })
       )
     }

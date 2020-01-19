@@ -5,6 +5,7 @@ import { Drink } from './../../_interfaces/drink.model';
 import { Pantry } from './../../_interfaces/pantry.model';
 
 import { RepositoryService } from './../../shared/services/repository.service';
+import { ErrorHandlerService } from './../../shared/services/error-handler.service';
 
 @Component({
   selector: 'app-order-history',
@@ -19,7 +20,9 @@ export class OrderHistoryComponent implements OnInit {
 
   public drinkDist: [string, number][];
 
-  constructor(private repository: RepositoryService) { }
+  public errorMessage: string;
+
+  constructor(private repository: RepositoryService, private errorHandler: ErrorHandlerService) { }
 
   ngOnInit() {
     this.getAllDrinks();
@@ -32,7 +35,11 @@ export class OrderHistoryComponent implements OnInit {
     this.repository.getData(apiAddress)
     .subscribe(result => {
       this.orders = result as Order[];
-    })
+    },(error => {
+        this.errorHandler.handleError(error);
+        this.errorMessage = this.errorHandler.errorMessage;
+      })
+    )
   }
 
   public getAllDrinks(){
@@ -40,7 +47,11 @@ export class OrderHistoryComponent implements OnInit {
     this.repository.getData(apiAddress)
     .subscribe(result => {
       this.drinks = result as Drink[];
-    })
+    },(error => {
+        this.errorHandler.handleError(error);
+        this.errorMessage = this.errorHandler.errorMessage;
+      })
+    )
   }
 
   public getAllPantries(){
@@ -48,9 +59,11 @@ export class OrderHistoryComponent implements OnInit {
     this.repository.getData(apiAddress)
     .subscribe(result => {
       this.pantries = result as Pantry[];
-    },
-    (error) => {
-    })
+    },(error => {
+        this.errorHandler.handleError(error);
+        this.errorMessage = this.errorHandler.errorMessage;
+      })
+    )
   }
 
   public getDrinkNameById(id: string){

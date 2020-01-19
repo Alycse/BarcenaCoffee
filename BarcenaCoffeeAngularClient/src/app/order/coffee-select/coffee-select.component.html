@@ -43,9 +43,12 @@
 <app-success-modal
   [modalText]="successMessage" 
   [okButtonText]="'OK'"
-  (redirectOnOK)="redirectToOrderHistory()"></app-success-modal>
+  (redirectOnOK)="redirectToOrderHistory()"
+>
+</app-success-modal>
  
 <app-error-modal
   [modalText]="errorMessage" 
-  [okButtonText]="'OK'"></app-error-modal>
-        
+  [okButtonText]="'OK'"
+>
+</app-error-modal>

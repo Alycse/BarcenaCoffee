@@ -18,5 +18,4 @@ export class SuccessModalComponent implements OnInit {
   public emitEvent(){
     this.redirectOnOK.emit();
   }
- 
 }

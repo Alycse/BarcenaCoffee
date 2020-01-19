@@ -4,6 +4,7 @@ import { Order } from './../../_interfaces/order.model';
 import { Drink } from './../../_interfaces/drink.model';
 
 import { RepositoryService } from './../../shared/services/repository.service';
+import { ErrorHandlerService } from './../../shared/services/error-handler.service';
 
 @Component({
   selector: 'app-drink-dist-graph',
@@ -23,8 +24,10 @@ export class DrinkDistGraphComponent implements OnInit {
   public columnNames: string[] = ["Drink Name", "Number of Times Ordered"];
   public width: number = 700;
   public height: number = 400;
+  
+  public errorMessage: string;
 
-  constructor(private repository: RepositoryService) { }
+  constructor(private repository: RepositoryService, private errorHandler: ErrorHandlerService) { }
 
   ngOnInit() {
     this.getAllOrders();
@@ -51,7 +54,11 @@ export class DrinkDistGraphComponent implements OnInit {
       }else{
         this.itemLoaded = true;
       }
-    })
+    },(error => {
+        this.errorHandler.handleError(error);
+        this.errorMessage = this.errorHandler.errorMessage;
+      })
+    )
   }
 
   public getAllDrinks(){
@@ -64,7 +71,11 @@ export class DrinkDistGraphComponent implements OnInit {
       }else{
         this.itemLoaded = true;
       }
-    })
+    },(error => {
+        this.errorHandler.handleError(error);
+        this.errorMessage = this.errorHandler.errorMessage;
+      })
+    )
   }
 
 }

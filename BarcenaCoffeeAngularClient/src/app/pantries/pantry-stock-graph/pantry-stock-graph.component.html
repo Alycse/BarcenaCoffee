@@ -1,4 +1,3 @@
-
 <div id="pantry-stock-graph-container" *ngIf="pantry != null">
     <google-chart id="chart" #chart
         [title]="title"
@@ -11,3 +10,9 @@
 <div id="btn-back-container">
     <button  class="btn btn-back" [routerLink]="['..']">Go Back</button>
 </div>
+
+<app-error-modal
+  [modalText]="errorMessage" 
+  [okButtonText]="'OK'"
+>
+</app-error-modal>
