@@ -25,12 +25,12 @@ import { DatePipe } from '@angular/common';
     HttpClientModule,
     GoogleChartsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent },
       { path: 'order', loadChildren: "./order/order.module#OrderModule" },
       { path: 'history', loadChildren: "./history/history.module#HistoryModule" },
       { path: 'pantries', loadChildren: "./pantries/pantries.module#PantriesModule" },
       { path: '404', component : NotFoundComponent},
-      { path: 'home', redirectTo: '', pathMatch: 'full' },
+      { path: '', redirectTo: 'order', pathMatch: 'full' },
+      { path: 'home', redirectTo: 'order', pathMatch: 'full' },
       { path: '**', redirectTo: '/404', pathMatch: 'full'}
     ])
   ],

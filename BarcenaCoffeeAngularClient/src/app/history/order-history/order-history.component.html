@@ -1,15 +1,13 @@
 <div id="order-history-container">
     <div id="order-history-header">
-        Coffee Order History
-        <br>
-        <button class="btn" id="btn-graph" [routerLink]="['graph']">Show Graph</button>
+        Coffee Order History  
     </div>
-    <div id="order-history-table-container" *ngIf="orders?.length > 0 && drinks?.length > 0 && pantries?.length > 0">
+    <div id="order-history-table-container" *ngIf="orders?.length > 0 && drinks?.length > 0 && pantries?.length > 0; else empty">
         <table id="order-history-table" class="table">
             <thead>
                 <tr>
                     <th scope="col">Drink</th>
-                    <th scope="col">Pantry Used</th>
+                    <th scope="col">Pantry</th>
                     <th scope="col">Date Ordered</th>
                 </tr>
             </thead>
@@ -22,4 +20,12 @@
             </tbody>
         </table>
     </div>
+    <div id="btn-drink-graph-container">
+        <button class="btn" id="btn-drink-graph" [routerLink]="['graph']">Show Drink Distribution Graph</button>
+    </div>
+    <ng-template #empty>
+        <div class="empty-table">
+            No orders found.
+        </div>
+    </ng-template>
 </div>

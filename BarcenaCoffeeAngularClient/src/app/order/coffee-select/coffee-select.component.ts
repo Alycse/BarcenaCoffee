@@ -22,6 +22,9 @@ export class CoffeeSelectComponent implements OnInit {
   public selectedDrinkIndex: number = -1;
   public selectedPantryIndex: number = -1;
 
+  public successMessage: string;
+  public errorMessage: string;
+
   constructor(private repository: RepositoryService, private datePipe: DatePipe, private router: Router) { }
 
   ngOnInit() {
@@ -63,12 +66,51 @@ export class CoffeeSelectComponent implements OnInit {
       orderDate: now
     }
 
-    let apiUrl = 'api/order';
-    this.repository.create(apiUrl, order)
+    let apiAddress = 'api/order';
+    this.repository.create(apiAddress, order)
       .subscribe(res => {
-        $('#success-modal').modal();
+        this.consumePantryStock(this.pantries[this.selectedPantryIndex], this.drinks[this.selectedDrinkIndex]);
       }
     )
+  }
+
+  public consumePantryStock(pantry: Pantry, drink: Drink){
+    let isOutOfStock: boolean = false;
+    if(pantry.coffeeBeanUnits >= drink.coffeeBeanUnits){
+      pantry.coffeeBeanUnits = pantry.coffeeBeanUnits - drink.coffeeBeanUnits;
+    }else{
+      this.errorMessage = pantry.pantryName + " is out of stock of coffee beans!";
+      isOutOfStock = true;
+    }
+    if(pantry.milkUnits >= drink.milkUnits){
+      pantry.milkUnits = pantry.milkUnits - drink.milkUnits;
+    }else{
+      this.errorMessage = pantry.pantryName + " is out of stock of milk!";
+      isOutOfStock = true;
+    }
+    if(pantry.sugarUnits >= drink.sugarUnits){
+      pantry.sugarUnits = pantry.sugarUnits - drink.sugarUnits;
+    }else{
+      this.errorMessage = pantry.pantryName + " is out of stock of sugar!";
+      isOutOfStock = true;
+    }
+    if(isOutOfStock){
+      $('#error-modal').modal();
+      return;
+    }else{
+      let apiAddress = `api/pantry/${pantry.id}`;
+      this.repository.update(apiAddress, pantry)
+        .subscribe(res => {
+          this.successMessage = drink.drinkName + " was successfully ordered!";
+          $('#success-modal').modal();
+          console.log("success");
+        },
+        (error => {
+          //this.errorHandler.handleError(error);
+          //this.errorMessage = this.errorHandler.errorMessage;
+        })
+      )
+    }
   }
 
   public redirectToOrderHistory(){

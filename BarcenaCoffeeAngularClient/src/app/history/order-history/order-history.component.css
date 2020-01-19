@@ -27,12 +27,26 @@
     font-size: 16px;
 }
 
-#btn-graph{
-    margin-top: 15px;
+#btn-drink-graph-container{
+    text-align: center;
+    margin-top: 30px;
+}
+#btn-drink-graph{
     background-color: rgb(117, 89, 37);
     color: white;
+    text-align: center;
 }
-#btn-graph:hover{
+#btn-drink-graph:hover{
     background-color: rgb(85, 64, 25);
     color: rgb(221, 221, 221);
+}
+
+.empty-table{
+    color: rgb(248, 239, 223);
+
+    text-align: center;
+
+    margin-top: 50px;
+
+    font-size: 18px;
 }

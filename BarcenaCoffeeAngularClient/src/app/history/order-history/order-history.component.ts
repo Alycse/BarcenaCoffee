@@ -48,15 +48,27 @@ export class OrderHistoryComponent implements OnInit {
     this.repository.getData(apiAddress)
     .subscribe(result => {
       this.pantries = result as Pantry[];
+    },
+    (error) => {
     })
   }
 
   public getDrinkNameById(id: string){
-    return this.drinks.find(d => d.id == id).drinkName;
+    let drink: Drink = this.drinks.find(d => d.id == id);
+    if(drink != null){
+      return drink.drinkName;
+    }else{
+      return "";
+    }
   }
 
   public getPantryNameById(id: string){
-    return this.pantries.find(d => d.id == id).pantryName;
+    let pantry: Pantry = this.pantries.find(p => p.id == id);
+    if(pantry != null){
+      return pantry.pantryName;
+    }else{
+      return "";
+    }
   }
 
   public showOrderHistoryGraph(){
