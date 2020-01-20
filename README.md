@@ -6,7 +6,7 @@ A web application, made with ASP.NET Core and Angular, that allows users to orde
 ![Screenshot 1](https://raw.githubusercontent.com/Alycse/BarcenaCoffee/master/Screenshots/1-Order-Coffee.jpg)
 In this page, you may select which drink you wish to order.
 You may then pick which **office**, and which **pantry** in that **office**, to send the order to.
-The **stock** of the pantry you have picked will then be decreased based on the **ingredients** of the coffee that you have ordered.
+The **stock** of the pantry you have selected will then be decreased based on the ingredients of the coffee you have ordered.
 
 ![Screenshot 2](https://raw.githubusercontent.com/Alycse/BarcenaCoffee/master/Screenshots/2-Order-Coffee-Success.jpg)
 
