@@ -1,4 +1,7 @@
-# BarcenaCoffee
+# Coffee'n GO!
+A web application, made with ASP.NET Core and Angular, that allows users to order drinks, keep track of the orders, view the current levels of the stock in the pantry, and more!
+
+# Features & Screenshots
 
 ![Screenshot 1](https://raw.githubusercontent.com/Alycse/BarcenaCoffee/master/Screenshots/1-Order-Coffee.jpg)
 In this page, you may select which drink you wish to order.
