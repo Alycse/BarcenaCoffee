@@ -157,7 +157,8 @@ export class CoffeeSelectComponent implements OnInit {
       let apiAddress = `api/pantry/${pantry.id}`;
       this.repository.update(apiAddress, pantry)
         .subscribe(res => {
-          this.successMessage = drink.drinkName + " was successfully ordered at " + pantry.pantryName + "!";
+          let office: Office = this.offices.find(o => o.id == pantry.officeId);
+          this.successMessage = drink.drinkName + " was successfully ordered at " + office.officeName + " | " + pantry.pantryName + "!";
           $('#success-modal').modal();
         },
         (error => {

@@ -7,7 +7,7 @@
                     All Pantries
                 </option>
                 <option *ngFor="let pantry of pantries; let i = index" value={{pantry.id}}>
-                    {{getOfficeNameByPantryId(pantry.id)}} - {{pantry.pantryName}}
+                    {{getOfficeNameByPantryId(pantry.id)}} | {{pantry.pantryName}}
                 </option>
             </select>
         </div>
