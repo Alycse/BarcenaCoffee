@@ -79,3 +79,7 @@
     color: rgb(66, 48, 20);
     background-color: rgb(245, 234, 217);
 }
+
+#office-tools-container{
+    margin-left: 40px;
+}

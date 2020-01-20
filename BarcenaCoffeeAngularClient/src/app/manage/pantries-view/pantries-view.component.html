@@ -35,8 +35,10 @@
         </div>
         <div id="btn-create-new-container">
             <button class="btn btn-create-new" (click)="showCreatePantryModal()">Create New Pantry</button>
-            <button class="btn btn-create-new" (click)="showCreateOfficeModal()">Create New Office</button>
-            <button class="btn btn-danger" (click)="showDeleteOfficeConfirmation(selectedOfficeId)">Delete Office</button>
+            <span id="office-tools-container">
+                <button class="btn btn-create-new" (click)="showCreateOfficeModal()">Create New Office</button>
+                <button class="btn btn-danger" (click)="showDeleteOfficeConfirmation(selectedOfficeId)">Delete Office</button>
+            </span>
         </div>
     </div>
     <ng-template #emptyPantries>

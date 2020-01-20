@@ -157,7 +157,7 @@ export class CoffeeSelectComponent implements OnInit {
       let apiAddress = `api/pantry/${pantry.id}`;
       this.repository.update(apiAddress, pantry)
         .subscribe(res => {
-          this.successMessage = drink.drinkName + " was successfully ordered\nat " + pantry.pantryName + "!";
+          this.successMessage = drink.drinkName + " was successfully ordered at " + pantry.pantryName + "!";
           $('#success-modal').modal();
         },
         (error => {
