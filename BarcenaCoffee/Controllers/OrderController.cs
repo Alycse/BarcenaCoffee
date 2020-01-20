@@ -68,6 +68,18 @@ namespace BarcenaCoffee.Controllers
             }
         }
 
+        [HttpGet("{id}/pantry", Name = "OrderByPantryId")]
+        public IActionResult GetAllByPantryId (Guid id) {
+            try {
+                var orders = _repository.Order.GetAllByPantryId(id);
+
+                var ordersResult = _mapper.Map<IEnumerable<OrderDto>>(orders);
+                return Ok(ordersResult);
+            } catch (Exception ex) {
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
         [HttpPost]
         public IActionResult Create ([FromBody]OrderCreationDto order) {
             try {

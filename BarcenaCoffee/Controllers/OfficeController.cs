@@ -12,14 +12,14 @@ using Repository;
 
 namespace BarcenaCoffee.Controllers {
 
-    [Route("api/pantry")]
+    [Route("api/office")]
     [ApiController]
-    public class PantryController : ControllerBase {
+    public class OfficeController : ControllerBase {
 
         private RepositoryWrapper _repository;
         private IMapper _mapper;
 
-        public PantryController (RepositoryWrapper repository, IMapper mapper) {
+        public OfficeController (RepositoryWrapper repository, IMapper mapper) {
             _repository = repository;
             _mapper = mapper;
         }
@@ -27,88 +27,76 @@ namespace BarcenaCoffee.Controllers {
         [HttpGet]
         public IActionResult GetAll () {
             try {
-                var Pantrys = _repository.Pantry.GetAll();
+                var Offices = _repository.Office.GetAll();
 
-                var PantrysResult = _mapper.Map<IEnumerable<PantryDto>>(Pantrys);
-                return Ok(PantrysResult);
+                var OfficesResult = _mapper.Map<IEnumerable<OfficeDto>>(Offices);
+                return Ok(OfficesResult);
             } catch (Exception ex) {
                 return StatusCode(500, "Internal server error");
             }
         }
 
-        [HttpGet("{id}", Name = "PantryById")]
+        [HttpGet("{id}", Name = "OfficeById")]
         public IActionResult GetById (Guid id) {
             try {
-                var pantry = _repository.Pantry.GetById(id);
+                var office = _repository.Office.GetById(id);
 
-                if (pantry == null) {
+                if (office == null) {
                     return NotFound();
                 } else {
-                    var pantryResult = _mapper.Map<PantryDto>(pantry);
-                    return Ok(pantryResult);
+                    var officeResult = _mapper.Map<OfficeDto>(office);
+                    return Ok(officeResult);
                 }
-            } catch (Exception ex) {
-                return StatusCode(500, "Internal server error");
-            }
-        }
-
-        [HttpGet("{id}/office", Name = "PantryByOfficeId")]
-        public IActionResult GetAllByOfficeId (Guid id) {
-            try {
-                var Pantrys = _repository.Pantry.GetAllByOfficeId(id);
-
-                var PantrysResult = _mapper.Map<IEnumerable<PantryDto>>(Pantrys);
-                return Ok(PantrysResult);
             } catch (Exception ex) {
                 return StatusCode(500, "Internal server error");
             }
         }
 
         [HttpPost]
-        public IActionResult Create ([FromBody]PantryCreationDto pantry) {
+        public IActionResult Create ([FromBody]OfficeCreationDto office) {
             try {
-                if (pantry == null) {
-                    return BadRequest("Pantry object is null");
+                if (office == null) {
+                    return BadRequest("Office object is null");
                 }
 
                 if (!ModelState.IsValid) {
                     return BadRequest("Invalid model object");
                 }
 
-                var pantryEntity = _mapper.Map<Pantry>(pantry);
+                var officeEntity = _mapper.Map<Office>(office);
 
-                _repository.Pantry.Create(pantryEntity);
+                _repository.Office.Create(officeEntity);
                 _repository.Save();
 
-                var createdPantry = _mapper.Map<PantryDto>(pantryEntity);
+                var createdOffice = _mapper.Map<OfficeDto>(officeEntity);
 
-                return CreatedAtRoute("PantryById", new {
-                    id = createdPantry.Id
-                }, createdPantry);
+                return CreatedAtRoute("OfficeById", new {
+                    id = createdOffice.Id
+                }, createdOffice);
             } catch (Exception ex) {
                 return StatusCode(500, "Internal server error");
             }
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update (Guid id, [FromBody]PantryUpdateDto pantry) {
+        public IActionResult Update (Guid id, [FromBody]OfficeUpdateDto office) {
             try {
-                if (pantry == null) {
-                    return BadRequest("Pantry object is null");
+                if (office == null) {
+                    return BadRequest("Office object is null");
                 }
 
                 if (!ModelState.IsValid) {
                     return BadRequest("Invalid model object");
                 }
 
-                var pantryEntity = _repository.Pantry.GetById(id);
-                if (pantryEntity == null) {
+                var officeEntity = _repository.Office.GetById(id);
+                if (officeEntity == null) {
                     return NotFound();
                 }
 
-                _mapper.Map(pantry, pantryEntity);
+                _mapper.Map(office, officeEntity);
 
-                _repository.Pantry.Update(pantryEntity);
+                _repository.Office.Update(officeEntity);
                 _repository.Save();
 
                 return NoContent();
@@ -120,12 +108,12 @@ namespace BarcenaCoffee.Controllers {
         [HttpDelete("{id}")]
         public IActionResult Delete (Guid id) {
             try {
-                var pantry = _repository.Pantry.GetById(id);
-                if (pantry == null) {
+                var office = _repository.Office.GetById(id);
+                if (office == null) {
                     return NotFound();
                 }
 
-                _repository.Pantry.Delete(pantry);
+                _repository.Office.Delete(office);
                 _repository.Save();
 
                 return NoContent();
