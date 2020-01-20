@@ -6,9 +6,10 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./success-modal.component.css', '../modal-shared.component.css']
 })
 export class SuccessModalComponent implements OnInit {
+
   @Input() public modalText: string;
   @Input() public okButtonText: string;
-  @Output() public redirectOnOK = new EventEmitter();
+  @Output() public onOkEvent = new EventEmitter();
  
   constructor() { }
  
@@ -16,6 +17,6 @@ export class SuccessModalComponent implements OnInit {
   }
  
   public emitEvent(){
-    this.redirectOnOK.emit();
+    this.onOkEvent.emit();
   }
 }

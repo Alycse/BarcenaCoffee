@@ -6,6 +6,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./error-modal.component.css', '../modal-shared.component.css']
 })
 export class ErrorModalComponent implements OnInit {
+  
   @Input() public modalText: string;
   @Input() public okButtonText: string;
  
@@ -14,7 +15,7 @@ export class ErrorModalComponent implements OnInit {
   ngOnInit() {
   }
 
-  public cancel(){
+  public hideModal(){
     $('#error-modal').modal('hide')
   }
  

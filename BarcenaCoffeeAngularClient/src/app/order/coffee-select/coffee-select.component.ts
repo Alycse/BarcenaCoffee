@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Drink } from './../../_interfaces/drink.model';
+import { Office } from './../../_interfaces/office.model';
 import { Pantry } from './../../_interfaces/pantry.model';
 import { CreationOrder } from '../../_interfaces/creation-order.model';
 
@@ -17,9 +18,11 @@ import { Router } from '@angular/router';
 })
 export class CoffeeSelectComponent implements OnInit {
 
+  public offices: Office[];
   public drinks: Drink[];
   public pantries: Pantry[];
 
+  public selectedOfficeIndex: number = -1;
   public selectedDrinkIndex: number = -1;
   public selectedPantryIndex: number = -1;
 
@@ -31,11 +34,37 @@ export class CoffeeSelectComponent implements OnInit {
 
   ngOnInit() {
     this.getAllDrinks();
-    this.getAllPantries();
+    this.getAllOffices();
+  }
+
+  public getAllOffices(){
+    let apiAddress: string = "api/office";
+    this.repository.getData(apiAddress)
+    .subscribe(result => {
+      this.offices = result as Office[];
+      this.selectOffice(0);
+    },(error => {
+          this.errorHandler.handleError(error);
+          this.errorMessage = this.errorHandler.errorMessage;
+        })
+    )
   }
 
   public getAllPantries(){
     let apiAddress: string = "api/pantry";
+    this.repository.getData(apiAddress)
+    .subscribe(result => {
+      this.pantries = result as Pantry[];
+      this.selectPantry(0);
+    },(error => {
+          this.errorHandler.handleError(error);
+          this.errorMessage = this.errorHandler.errorMessage;
+        })
+    )
+  }
+
+  public getAllPantriesByOfficeId(officeId: string){
+    let apiAddress: string = `api/pantry/${officeId}/office`;
     this.repository.getData(apiAddress)
     .subscribe(result => {
       this.pantries = result as Pantry[];
@@ -68,23 +97,35 @@ export class CoffeeSelectComponent implements OnInit {
     this.selectedPantryIndex = index;
   }
 
-  public orderSelectedDrink(){
-    let now = new Date();
-    let order: CreationOrder = {
-      drinkId: this.drinks[this.selectedDrinkIndex].id,
-      pantryId: this.pantries[this.selectedPantryIndex].id,
-      orderDate: now
-    }
+  public selectOffice(index: number){
+    this.selectedOfficeIndex = index;
+    this.getAllPantriesByOfficeId(this.offices[index].id);
+  }
 
-    let apiAddress = 'api/order';
-    this.repository.create(apiAddress, order)
-      .subscribe(res => {
-        this.consumePantryStock(this.pantries[this.selectedPantryIndex], this.drinks[this.selectedDrinkIndex]);
-      },(error => {
-        this.errorHandler.handleError(error);
-        this.errorMessage = this.errorHandler.errorMessage;
-      })
-    )
+  public orderSelectedDrink(){
+    if(this.isOrderAllowed()){
+      let now = new Date();
+      let order: CreationOrder = {
+        drinkId: this.drinks[this.selectedDrinkIndex].id,
+        pantryId: this.pantries[this.selectedPantryIndex].id,
+        orderDate: now
+      }
+
+      let apiAddress = 'api/order';
+      this.repository.create(apiAddress, order)
+        .subscribe(res => {
+          this.consumePantryStock(this.pantries[this.selectedPantryIndex], this.drinks[this.selectedDrinkIndex]);
+        },(error => {
+          this.errorHandler.handleError(error);
+          this.errorMessage = this.errorHandler.errorMessage;
+        })
+      )
+    }
+  }
+
+  public isOrderAllowed(){
+    return (this.selectedDrinkIndex >= 0 && this.selectedPantryIndex >= 0 && 
+      this.selectedDrinkIndex < this.drinks.length && this.selectedPantryIndex < this.pantries.length);
   }
 
   public consumePantryStock(pantry: Pantry, drink: Drink){
@@ -125,6 +166,10 @@ export class CoffeeSelectComponent implements OnInit {
         })
       )
     }
+  }
+  
+  public onOrderSuccess(){
+    this.redirectToOrderHistory();
   }
 
   public redirectToOrderHistory(){

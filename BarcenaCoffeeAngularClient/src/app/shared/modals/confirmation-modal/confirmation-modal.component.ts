@@ -9,7 +9,7 @@ export class ConfirmationModalComponent implements OnInit {
   @Input() public modalText: string;
   @Input() public okButtonText: string;
   @Input() public cancelButtonText: string;
-  @Output() public redirectOnOK = new EventEmitter();
+  @Output() public onOkEvent = new EventEmitter();
  
   constructor() { }
 
@@ -17,10 +17,10 @@ export class ConfirmationModalComponent implements OnInit {
   }
 
   public emitEvent(){
-    this.redirectOnOK.emit();
+    this.onOkEvent.emit();
   }
 
-  public cancel(){
+  public hideModal(){
     $('#confirmation-modal').modal('hide')
   }
 }

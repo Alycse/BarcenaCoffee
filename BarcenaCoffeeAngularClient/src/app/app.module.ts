@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router'
 import { HttpClientModule } from '@angular/common/http';
 import { GoogleChartsModule } from 'angular-google-charts';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { NotFoundComponent } from './error-pages/not-found/not-found.component';
 
@@ -18,7 +18,6 @@ import { InternalServerComponent } from './error-pages/internal-server/internal-
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     MenuComponent,
     NotFoundComponent,
     InternalServerComponent
@@ -27,10 +26,12 @@ import { InternalServerComponent } from './error-pages/internal-server/internal-
     BrowserModule,
     HttpClientModule,
     GoogleChartsModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       { path: 'order', loadChildren: "./order/order.module#OrderModule" },
       { path: 'history', loadChildren: "./history/history.module#HistoryModule" },
-      { path: 'pantries', loadChildren: "./pantries/pantries.module#PantriesModule" },
+      { path: 'manage', loadChildren: "./manage/manage.module#ManageModule" },
       { path: '404', component : NotFoundComponent},
       { path: '500', component: InternalServerComponent },
       { path: '', redirectTo: 'order', pathMatch: 'full' },

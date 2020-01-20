@@ -1,13 +1,22 @@
-<div id="order-history-container">
-    <div id="order-history-header">
-        Coffee Order History  
-    </div>
-    <div id="order-history-body" *ngIf="orders?.length > 0 && drinks?.length > 0 && pantries?.length > 0; else empty">
-        <div id="order-history-table-container">
+pantry<div id="order-history-container">
+    <div id="order-history-body" *ngIf="pantries?.length > 0 && offices?.length > 0; else empty">
+        <div id="order-history-title">
+            Coffee Orders at:
+            <select id="pantry-select" (change)="onChangePantry($event.target.value)" [(ngModel)]="selectedPantryId">
+                <option selected value="all">
+                    All Pantries
+                </option>
+                <option *ngFor="let pantry of pantries; let i = index" value={{pantry.id}}>
+                    {{getOfficeNameByPantryId(pantry.id)}} - {{pantry.pantryName}}
+                </option>
+            </select>
+        </div>
+        <div id="order-history-table-container" *ngIf="orders?.length > 0 && drinks?.length > 0; else empty">
             <table id="order-history-table" class="table">
                 <thead>
                     <tr>
                         <th scope="col">Drink</th>
+                        <th scope="col">Office</th>
                         <th scope="col">Pantry</th>
                         <th scope="col">Date Ordered</th>
                     </tr>
@@ -15,14 +24,15 @@
                 <tbody *ngFor="let order of orders">
                     <tr>
                         <td>{{getDrinkNameById(order.drinkId)}}</td>
+                        <td>{{getOfficeNameByPantryId(order.pantryId)}}</td>
                         <td>{{getPantryNameById(order.pantryId)}}</td>
-                        <td>{{order.orderDate}}</td>
+                        <td>{{datePipe.transform(order.orderDate, 'medium')}}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <div id="btn-drink-graph-container">
-            <button class="btn" id="btn-drink-graph" [routerLink]="['graph']">Show Drink Distribution Graph</button>
+            <button class="btn" id="btn-drink-graph" (click)="navigateToOrderGraph()">Show Drink Distribution Graph</button>
         </div>
     </div>
     <ng-template #empty>

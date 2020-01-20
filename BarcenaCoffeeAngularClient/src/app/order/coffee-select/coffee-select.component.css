@@ -115,26 +115,32 @@
     padding-bottom: 17px;
 }
 
-.btn-order{
+#btn-order{
     background-color: rgb(88, 79, 57);
     color: rgb(238, 235, 222);
 
     font-weight: 600;
     font-size: 20px;
 
-    margin-top: 40px;
+    margin-bottom: 40px;
     margin-left: 40px;
 
     width: 300px;
     height: 60px;
 }
 
-.btn-order:hover{
+#btn-order:hover{
     background-color: rgb(70, 64, 52);
     color: rgb(231, 223, 187);
 }
 
-.btn-pantry{
+.right-panel{
+    margin-bottom: 40px;
+    margin-left: 40px;
+    margin-top: 2px;
+}
+
+.btn-choice{
     background-color: rgb(117, 102, 64);
     color: rgb(233, 225, 192);
 
@@ -142,22 +148,31 @@
     font-size: 18px;
 
     margin-top: 2px;
-    margin-left: 40px;
 
     width: 300px;
     height: 45px;
 }
 
-.btn-pantry:hover{
+.btn-choice:hover{
     background-color: rgb(77, 66, 46);
     color: rgb(231, 218, 160);
 }
 
-.selected-btn-pantry{
+.selected-btn-choice{
     background-color: rgb(112, 136, 81);
     color: rgb(245, 237, 206);
 }
-.selected-btn-pantry:hover{
+.selected-btn-choice:hover{
     background-color: rgb(109, 145, 63);
     color: rgb(207, 197, 157);
+}
+
+.right-panel-title{
+    color: rgb(207, 197, 157);
+
+    font-size: 16px;
+
+    text-align: center;
+
+    margin-bottom: 10px;
 }

@@ -31,11 +31,24 @@
         </div>
     </div>
 
-    <div id="right-panel-container" class="block" *ngIf="pantries?.length > 0">
-        <div id="pantries" *ngFor="let pantry of pantries; let i = index">
-            <button class="btn btn-pantry" [ngClass]="{'selected-btn-pantry': selectedPantryIndex == i}" (click)="selectPantry(i)">{{pantry.pantryName}}</button>
+    <div id="right-panel-container" class="block">
+        <button id="btn-order" class="btn" (click)="orderSelectedDrink()" [disabled]="!isOrderAllowed()">Order</button>
+        <div class="right-panel" *ngIf="offices?.length > 0">
+            <div class="right-panel-title">
+                Choose an Office
+            </div>
+            <div id="offices" *ngFor="let office of offices; let i = index">
+                <button class="btn btn-choice" [ngClass]="{'selected-btn-choice': selectedOfficeIndex == i}" (click)="selectOffice(i)">{{office.officeName}}</button>
+            </div>
         </div>
-        <button class="btn btn-order" (click)="orderSelectedDrink()">Order</button>
+        <div class="right-panel" *ngIf="pantries?.length > 0">
+            <div class="right-panel-title">
+                Choose a Pantry in {{offices[selectedOfficeIndex].officeName}}
+            </div>
+            <div id="pantries" *ngFor="let pantry of pantries; let i = index">
+                <button class="btn btn-choice" [ngClass]="{'selected-btn-choice': selectedPantryIndex == i}" (click)="selectPantry(i)">{{pantry.pantryName}}</button>
+            </div>
+        </div>
     </div>
 
 </div>
@@ -43,7 +56,7 @@
 <app-success-modal
   [modalText]="successMessage" 
   [okButtonText]="'OK'"
-  (redirectOnOK)="redirectToOrderHistory()"
+  (onOkEvent)="onOrderSuccess()"
 >
 </app-success-modal>
  

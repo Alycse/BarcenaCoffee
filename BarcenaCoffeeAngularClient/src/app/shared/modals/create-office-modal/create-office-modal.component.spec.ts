@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HomeComponent } from './home.component';
+import { CreateOfficeModalComponent } from './create-office-modal.component';
 
-describe('HomeComponent', () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+describe('CreateOfficeModalComponent', () => {
+  let component: CreateOfficeModalComponent;
+  let fixture: ComponentFixture<CreateOfficeModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomeComponent ]
+      declarations: [ CreateOfficeModalComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomeComponent);
+    fixture = TestBed.createComponent(CreateOfficeModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

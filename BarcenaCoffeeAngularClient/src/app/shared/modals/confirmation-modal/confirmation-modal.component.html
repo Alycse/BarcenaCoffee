@@ -5,7 +5,7 @@
                 <p>{{modalText}}</p>
             </div>
             <div class="button-group">
-                <button type="button" class="btn btn-modal btn-modal-cancel" data-dismiss="modal" (click)="cancel()">{{cancelButtonText}}</button>
+                <button type="button" class="btn btn-modal btn-modal-cancel" data-dismiss="modal" (click)="hideModal()">{{cancelButtonText}}</button>
                 <button type="button" class="btn btn-modal" data-dismiss="modal" (click)="emitEvent()">{{okButtonText}}</button>
             </div>
         </div>

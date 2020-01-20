@@ -8,6 +8,7 @@ import { ErrorModalComponent } from './modals/error-modal/error-modal.component'
 import { RestockModalComponent } from './modals/restock-modal/restock-modal.component';
 import { ConfirmationModalComponent } from './modals/confirmation-modal/confirmation-modal.component';
 import { CreatePantryModalComponent } from './modals/create-pantry-modal/create-pantry-modal.component';
+import { CreateOfficeModalComponent } from './modals/create-office-modal/create-office-modal.component';
  
 @NgModule({
     imports: [
@@ -20,14 +21,16 @@ import { CreatePantryModalComponent } from './modals/create-pantry-modal/create-
         ErrorModalComponent,
         RestockModalComponent,
         ConfirmationModalComponent,
-        CreatePantryModalComponent
+        CreatePantryModalComponent,
+        CreateOfficeModalComponent
     ],
     exports: [
         SuccessModalComponent,
         ErrorModalComponent,
         RestockModalComponent,
         ConfirmationModalComponent,
-        CreatePantryModalComponent
+        CreatePantryModalComponent,
+        CreateOfficeModalComponent
     ]
 })
 export class SharedModule { }

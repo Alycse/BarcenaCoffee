@@ -1,0 +1,31 @@
+<div id="create-office-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p class="title">Creating new office...</p>
+                <form [formGroup]="createOfficeForm" autocomplete="off" novalidate (ngSubmit)="createOffice(createOfficeForm.value)">
+                    <div class="form-group">
+                        <div class="name-title">
+                            Office Name*
+                        </div>
+                        <div>
+                            <input type="text" class="form-control form-control-name" formControlName="officeName"
+                                placeholder="Enter the name of the Office">
+                            <em class="error" *ngIf="validateControl('officeName') && hasError('officeName', 'required')">*This field is required</em>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-modal btn-modal-cancel" (click)="hideModal()">Cancel</button>
+                        <button type="submit" class="btn btn-modal" [disabled]="!createOfficeForm.valid">Confirm</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-error-modal
+  [modalText]="errorMessage" 
+  [okButtonText]="'OK'"
+>
+</app-error-modal>

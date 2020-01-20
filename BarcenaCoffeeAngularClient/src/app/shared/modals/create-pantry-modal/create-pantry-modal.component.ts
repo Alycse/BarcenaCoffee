@@ -18,6 +18,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class CreatePantryModalComponent implements OnInit {
   public createPantryForm: FormGroup;
 
+  @Input() public officeId: string;
+
   public errorMessage: string;
 
   constructor(private pantrySettings: PantrySettingsService, private repository: RepositoryService, 
@@ -54,6 +56,7 @@ export class CreatePantryModalComponent implements OnInit {
     if (this.createPantryForm.valid) {
       let pantry: CreationPantry = {
         pantryName: createPantryFormValue.pantryName,
+        officeId: this.officeId,
         coffeeBeanUnits: this.pantrySettings.getUnitsFromIngredientContainerAmt(createPantryFormValue.coffeeBeanBagQuantity),
         sugarUnits: this.pantrySettings.getUnitsFromIngredientContainerAmt(createPantryFormValue.sugarPackQuantity),
         milkUnits: this.pantrySettings.getUnitsFromIngredientContainerAmt(createPantryFormValue.milkCartonQuantity)
@@ -69,12 +72,12 @@ export class CreatePantryModalComponent implements OnInit {
             this.errorMessage = this.errorHandler.errorMessage;
           })
       )
-      $('#create-pantry-modal').modal('hide')
+      this.hideModal();
 
     }
   }
 
-  public cancel(){
+  public hideModal(){
     $('#create-pantry-modal').modal('hide')
   }
 

@@ -24,6 +24,7 @@ export class PantrySettingsService {
   public convertPantryToContainers(pantry: Pantry){
     let convertedPantry: PantryConverted = {
       id: pantry.id,
+      officeId: pantry.officeId,
       pantryName: pantry.pantryName,
       coffeeBeanBagQuantity: this.getIngredientContainerAmtFromUnits(pantry.coffeeBeanUnits),
       sugarPackQuantity: this.getIngredientContainerAmtFromUnits(pantry.sugarUnits),

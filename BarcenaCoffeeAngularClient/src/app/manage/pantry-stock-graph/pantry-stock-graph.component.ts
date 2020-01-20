@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Location} from '@angular/common';
 
 import { Pantry } from './../../_interfaces/pantry.model';
 
@@ -27,7 +28,8 @@ export class PantryStockGraphComponent implements OnInit {
   public errorMessage: string;
 
   constructor(private repository: RepositoryService, private router: Router, 
-    private activeRoute: ActivatedRoute, private pantrySettings: PantrySettingsService, private errorHandler: ErrorHandlerService) { }
+    private activeRoute: ActivatedRoute, private pantrySettings: PantrySettingsService, 
+    private errorHandler: ErrorHandlerService, private location: Location) { }
 
   ngOnInit() {
     this.getPantry(this.activeRoute.snapshot.params['id']);
@@ -52,6 +54,10 @@ export class PantryStockGraphComponent implements OnInit {
       ["Sugar Packs", this.pantrySettings.getIngredientContainerAmtFromUnits(this.pantry.sugarUnits)], 
       ["Milk Cartons", this.pantrySettings.getIngredientContainerAmtFromUnits(this.pantry.milkUnits)], 
     ];
+  }
+
+  public back(){
+    this.location.back();
   }
 
 }

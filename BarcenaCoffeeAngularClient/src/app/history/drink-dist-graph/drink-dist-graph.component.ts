@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Location} from '@angular/common';
 
 import { Order } from './../../_interfaces/order.model';
 import { Drink } from './../../_interfaces/drink.model';
@@ -27,7 +28,7 @@ export class DrinkDistGraphComponent implements OnInit {
   
   public errorMessage: string;
 
-  constructor(private repository: RepositoryService, private errorHandler: ErrorHandlerService) { }
+  constructor(private repository: RepositoryService, private errorHandler: ErrorHandlerService, private location: Location) { }
 
   ngOnInit() {
     this.getAllOrders();
@@ -76,6 +77,10 @@ export class DrinkDistGraphComponent implements OnInit {
         this.errorMessage = this.errorHandler.errorMessage;
       })
     )
+  }
+
+  public back(){
+    this.location.back();
   }
 
 }

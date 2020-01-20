@@ -14,6 +14,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./restock-modal.component.css']
 })
 export class RestockModalComponent implements OnInit {
+  
   @Input() public pantry: Pantry;
 
   public restockForm: FormGroup;
@@ -70,11 +71,11 @@ export class RestockModalComponent implements OnInit {
             this.errorMessage = this.errorHandler.errorMessage;
           })
       )
-      $('#restock-modal').modal('hide');
+      this.hideModal();
     }
   }
 
-  public cancel(){
+  public hideModal(){
     $('#restock-modal').modal('hide')
   }
 
