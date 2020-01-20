@@ -22,9 +22,9 @@
                     <tbody *ngFor="let pantry of pantries; let i = index">
                         <tr>
                             <td>{{pantry.pantryName}}</td>
-                            <td><span title="{{pantry.coffeeBeanUnits}} Units of Coffee Bean">{{getIngredientContainerAmtFromUnits(pantry.coffeeBeanUnits)}}</span></td>
-                            <td><span title="{{pantry.sugarUnits}} Units of Sugar">{{getIngredientContainerAmtFromUnits(pantry.sugarUnits)}}</span></td>
-                            <td><span title="{{pantry.milkUnits}} Units of Milk">{{getIngredientContainerAmtFromUnits(pantry.milkUnits)}}</span></td>
+                            <td><span title="{{pantry.coffeeBeanUnits}} Units of Coffee Bean">{{getIngredientContainerAmtFromUnits(pantry.coffeeBeanUnits)}} <span class="ingredient-unit">({{pantry.coffeeBeanUnits}} Units)</span></span></td>
+                            <td><span title="{{pantry.sugarUnits}} Units of Sugar">{{getIngredientContainerAmtFromUnits(pantry.sugarUnits)}} <span class="ingredient-unit">({{pantry.sugarUnits}} Units)</span></span></td>
+                            <td><span title="{{pantry.milkUnits}} Units of Milk">{{getIngredientContainerAmtFromUnits(pantry.milkUnits)}} <span class="ingredient-unit">({{pantry.milkUnits}} Units)</span></span></td>
                             <td><button class="btn btn-restock" (click)="restock(i)">Restock</button></td>
                             <td><button class="btn btn-graph" (click)="showStockGraph(pantry.id)">Show Stock Graph</button></td>
                             <td><button class="btn btn-danger" (click)="showDeletePantryConfirmation(pantry.id)">Delete Pantry</button></td>

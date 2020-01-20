@@ -83,3 +83,11 @@
 #office-tools-container{
     margin-left: 40px;
 }
+
+.ingredient-unit{
+    color: rgb(168, 157, 128);
+
+    margin-left: 5px;
+
+    font-size: 12px;
+}
