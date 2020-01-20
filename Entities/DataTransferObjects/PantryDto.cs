@@ -8,6 +8,12 @@ namespace Entities.DataTransferObjects {
         public Guid Id {
             get; set;
         }
+        public Guid OfficeId {
+            get; set;
+        }
+        public OfficeDto Office {
+            get; set;
+        }
         public string PantryName {
             get; set;
         }

@@ -12,6 +12,14 @@ namespace Entities.Models {
             get; set;
         }
 
+        [ForeignKey(nameof(Office))]
+        public Guid OfficeId {
+            get; set;
+        }
+        public Office Office {
+            get; set;
+        }
+
         [StringLength(45, ErrorMessage = "Pantry Name can't be longer than 45 characters!")]
         public string PantryName {
             get; set;

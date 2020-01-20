@@ -13,6 +13,14 @@ namespace Entities.DataTransferObjects {
             get; set;
         }
 
+        [ForeignKey(nameof(Office))]
+        public Guid OfficeId {
+            get; set;
+        }
+        public Office Office {
+            get; set;
+        }
+
         [Required(ErrorMessage = "Coffee Bean Units Amount is required!")]
         public int CoffeeBeanUnits {
             get; set;
