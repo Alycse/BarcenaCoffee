@@ -29,5 +29,11 @@ namespace Repository {
                 .Include(order => order.Drink)
                 .FirstOrDefault();
         }
+
+        public IEnumerable<Order> GetAllByPantryId (Guid pantryId) {
+            return FindByCondition(owner => owner.PantryId.Equals(pantryId))
+                .OrderByDescending(order => order.OrderDate)
+                .ToList();
+        }
     }
 }

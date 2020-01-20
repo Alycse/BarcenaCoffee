@@ -13,6 +13,7 @@ namespace Repository {
         private PantryRepository _pantryRepository;
         private DrinkRepository _drinkRepository;
         private OrderRepository _orderRepository;
+        private OfficeRepository _officeRepository;
 
         public PantryRepository Pantry {
             get {
@@ -41,6 +42,16 @@ namespace Repository {
                 }
 
                 return _orderRepository;
+            }
+        }
+
+        public OfficeRepository Office {
+            get {
+                if (_officeRepository == null) {
+                    _officeRepository = new OfficeRepository(_repoContext);
+                }
+
+                return _officeRepository;
             }
         }
 

@@ -22,5 +22,11 @@ namespace Repository {
             return FindByCondition(pantry => pantry.Id.Equals(pantryId))
                 .FirstOrDefault();
         }
+
+        public IEnumerable<Pantry> GetAllByOfficeId (Guid officeId) {
+            return FindByCondition(pantry => pantry.OfficeId.Equals(officeId))
+                .OrderBy(pantry => pantry.PantryName)
+                .ToList();
+        }
     }
 }
