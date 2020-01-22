@@ -35,6 +35,7 @@ export class DrinkDistGraphComponent implements OnInit {
     this.getAllDrinks();
   }
 
+  //Get data for the drink distribution graph
   public getDrinkDistData(){
     this.data = [];
     for (var i = 0; i < this.drinks.length; i++) {

@@ -340,3 +340,5 @@ ASALocalRun/
 healthchecksdb
 /BarcenaCoffeeAngularClient/dist/BarcenaCoffeeClient
 /BarcenaCoffee/wwwroot
+/BarcenaCoffeeWeb
+/BarcenaCoffeeClient

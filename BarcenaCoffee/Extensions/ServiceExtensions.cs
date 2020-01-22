@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using Entities;
 using Repository;
 using Contracts;
+using BarcenaCoffeeX;
+using Entities.Models;
 
 namespace BarcenaCoffee.Extensions {
     public static class ServiceExtensions {
@@ -25,17 +27,19 @@ namespace BarcenaCoffee.Extensions {
         public static void ConfigureIISIntegration (this IServiceCollection services) {
             services.Configure<IISOptions>(options =>
             {
-
             });
         }
 
         public static void ConfigureMySqlContext (this IServiceCollection services, IConfiguration config) {
             var connectionString = config["mysqlconnection:connectionString"];
-            services.AddDbContext<RepositoryContext>(o => o.UseMySql(connectionString));
+            //services.AddDbContext<RepositoryContext>(o => o.UseMySql(connectionString));
+            services.AddDbContext<RepositoryContext>(options => options.UseInMemoryDatabase(databaseName: "barcenacoffee"));
+
         }
 
         public static void ConfigureRepositoryWrapper (this IServiceCollection services) {
             services.AddScoped<RepositoryWrapper>();
         }
+ 
     }
 }

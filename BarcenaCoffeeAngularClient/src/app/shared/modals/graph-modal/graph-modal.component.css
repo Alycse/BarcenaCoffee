@@ -1,0 +1,45 @@
+.modal-content{
+    background-color: rgb(61, 44, 25);
+}
+
+.modal-body p {
+    text-align: center;
+    margin-top: 10px;
+
+    font-size: 24px;
+
+    color: rgb(250, 243, 232);
+
+    padding: 20px;
+}
+ 
+.modal-dialog {
+    position: fixed;
+}
+
+.modal-footer{
+    padding: 0;
+}
+
+.btn-modal{
+    width: 100%;
+
+    font-size: 16px;
+    
+    padding: 10px;
+
+    background-color: rgb(100, 82, 52);
+    color: rgb(250, 243, 232);
+}
+
+.btn-modal:hover{
+    background-color: rgb(78, 61, 31);
+}
+
+#graph{
+    padding: 10px;
+    z-index: 1000;
+}
+
+.modal{
+}

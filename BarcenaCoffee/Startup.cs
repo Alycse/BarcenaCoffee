@@ -5,14 +5,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using BarcenaCoffee.Extensions;
+using Entities.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using Entities;
+using BarcenaCoffeeX.Testing;
 
 namespace BarcenaCoffee {
     public class Startup {
@@ -31,7 +36,6 @@ namespace BarcenaCoffee {
             services.ConfigureMySqlContext(Configuration);
             services.ConfigureRepositoryWrapper();
             services.AddAutoMapper(typeof(Startup));
-
             services.AddControllers();
         }
 
@@ -40,8 +44,7 @@ namespace BarcenaCoffee {
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
             } else {
-                app.Use(async (context, next) =>
-                {
+                app.Use(async (context, next) => {
                     await next();
                     if (context.Response.StatusCode == 404 && !Path.HasExtension(context.Request.Path.Value)) {
                         context.Request.Path = "/index.html";
@@ -49,6 +52,8 @@ namespace BarcenaCoffee {
                     }
                 });
             }
+
+            SeedInitialData();
 
             app.UseStaticFiles();
 
@@ -66,5 +71,10 @@ namespace BarcenaCoffee {
                 endpoints.MapControllers();
             });
         }
+
+        void SeedInitialData () {
+            DataSeeder.SeedInitialData();
+        }
+
     }
 }

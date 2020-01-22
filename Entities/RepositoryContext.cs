@@ -19,5 +19,8 @@ namespace Entities {
         public DbSet<Order> Orders {
             get; set;
         }
+        public DbSet<Office> Offices {
+            get; set;
+        }
     }
 }
